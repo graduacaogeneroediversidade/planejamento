@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejamento Acadêmico 2025.2 - Gênero e Diversidade UFBA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #581c87 0%, #7e22ce 100%); 
+        }
+        .main-layout {
+            display: flex;
+            flex-direction: column;
+        }
+        @media (min-width: 768px) {
+            .main-layout {
+                flex-direction: row;
+            }
+        }
+        .side-nav {
+            background-color: #f8fafc; /* slate-50 */
+            border-bottom: 1px solid #e2e8f0; /* slate-200 */
+        }
+        @media (min-width: 768px) {
+            .side-nav {
+                width: 260px;
+                min-height: 100%;
+                border-right: 1px solid #e2e8f0;
+                border-bottom: none;
+            }
+        }
+        .nav-item, .sub-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            color: #475569; /* slate-600 */
+            border-radius: 0.5rem;
+        }
+        .sub-nav-item {
+            padding-left: 2.75rem;
+            font-weight: 500;
+        }
+        .nav-item.active, .sub-nav-item.active {
+            color: #ffffff;
+            background-color: #6d28d9; /* violet-800 */
+        }
+        .nav-item:hover:not(.active), .sub-nav-item:hover:not(.active) {
+            background-color: #e2e8f0; /* slate-200 */
+            color: #1e293b; /* slate-800 */
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .timeline-item .date {
+            background-color: #6b21a8;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            text-align: center;
+            width: 115px;
+            flex-shrink: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .event-card, .disciplina-card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1rem 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #9333ea; /* purple-600 */
+            transition: all 0.3s ease;
+        }
+        .responsible-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background-color: #f3e8ff;
+            color: #581c87;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .info-section h3, .disciplinas-section h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #4c1d95; /* violet-900 */
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #ddd6fe; /* violet-200 */
+        }
+        .info-section p, .info-section li {
+            color: #334155; /* slate-700 */
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        .info-section ul, .info-section ol {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+        .info-section .highlight {
+            background-color: #fefce8; /* yellow-50 */
+            padding: 1.25rem;
+            border-left: 4px solid #facc15; /* yellow-400 */
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .disciplina-card {
+            height: 100%;
+        }
+        .disciplina-card h4 {
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: #1e293b;
+        }
+        .disciplina-card p {
+            font-size: 0.875rem;
+            color: #475569;
+            margin-top: 0.5rem;
+        }
+        .disciplina-card p > strong {
+            font-weight: 500;
+            color: #334155;
+        }
+        .day-heading {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #4338ca;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #c7d2fe;
+        }
+        /* Estilos da Busca */
+        .search-highlight {
+            box-shadow: 0 0 0 3px #a78bfa; /* violet-300 */
+            transform: scale(1.02);
+        }
+        .search-dim {
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-4">
+        
+        <main class="w-full max-w-7xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
+            
+            <header class="header-bg p-8 md:p-12 text-white flex items-center justify-center text-center">
+                <img src="https://i.imgur.com/T6iOecJ.png" alt="Logotipo NEIM" class="h-24 w-auto mr-6 hidden sm:block" onerror="this.onerror=null; this.src='https://placehold.co/96x96/ffffff/581c87?text=Logo';">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Planejamento Acadêmico</h1>
+                    <p class="mt-2 text-lg font-medium text-purple-200">Bacharelado em Estudos de Gênero e Diversidade - UFBA</p>
+                </div>
+            </header>
+
+            <div class="main-layout">
+                
+                <aside class="side-nav flex-shrink-0">
+                    <nav class="p-3 md:p-4 space-y-2">
+                        <div>
+                            <button id="calendario-toggle" class="nav-item w-full justify-between">
+                                <span class="flex items-center gap-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>
+                                    <span>Calendário</span>
+                                </span>
+                                <svg class="toggle-icon-plus h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                                <svg class="toggle-icon-minus h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
+                            </button>
+                            <div id="calendario-submenu" class="submenu">
+                                <button class="sub-nav-item tab-button active" data-tab="calendario-2025-2">
+                                    <span>2025.2</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="disciplinas-toggle" class="nav-item w-full justify-between">
+                                <span class="flex items-center gap-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 15c1.255 0 2.443-.29 3.5-.804V4.804zM14.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 0114.5 15c1.255 0 2.443-.29 3.5-.804v-10A7.968 7.968 0 0014.5 4z" /></svg>
+                                    <span>Disciplinas</span>
+                                </span>
+                                <svg class="toggle-icon-plus h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                                <svg class="toggle-icon-minus h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
+                            </button>
+                            <div id="disciplinas-submenu" class="submenu">
+                                <button class="sub-nav-item tab-button" data-tab="disciplinas-2025-2">
+                                    <span>2025.2</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="sigaa-toggle" class="nav-item w-full justify-between">
+                                <span class="flex items-center gap-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v10H5V5zm2 2h2v2H7V7zm4 0h2v2h-2V7zm-4 4h2v2H7v-2zm4 0h2v2h-2v-2z" clip-rule="evenodd" /></svg>
+                                    <span>SIGAA</span>
+                                </span>
+                                <svg class="toggle-icon-plus h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+                                <svg class="toggle-icon-minus h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
+                            </button>
+                             <div id="sigaa-submenu" class="submenu">
+                                <button class="sub-nav-item tab-button" data-tab="acesso">
+                                    <span>Acesso</span>
+                                </button>
+                                <button class="sub-nav-item tab-button" data-tab="matricula">
+                                    <span>Matrícula</span>
+                                </button>
+                                <button class="sub-nav-item tab-button" data-tab="horarios">
+                                    <span>Horários</span>
+                                </button>
+                                <button class="sub-nav-item tab-button" data-tab="beneficios">
+                                    <span>Benefícios</span>
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+                </aside>
+
+                <div class="flex-grow p-6 md:p-10 bg-slate-50">
+                    
+                    <div id="calendario-2025-2" class="tab-content active space-y-10">
+                        <div class="mb-8">
+                            <div class="flex gap-2">
+                                <input type="text" id="calendarSearchInput" placeholder="Buscar por evento, data, mês..." class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-violet-400 focus:border-violet-400 transition">
+                                <button id="calendarSearchButton" class="px-5 py-2 bg-violet-700 text-white font-semibold rounded-md hover:bg-violet-800 transition">Buscar</button>
+                            </div>
+                            <p id="calendarNoResultsMessage" class="text-slate-600 mt-3 hidden">Nenhum evento encontrado.</p>
+                        </div>
+                        <div class="space-y-10" id="calendar-events-container">
+                            <div>
+                                <h2 class="text-2xl font-bold text-purple-800 mb-6 border-b-2 border-purple-200 pb-2">AGOSTO</h2>
+                                <div class="space-y-8">
+                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">11 a 18</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Matrícula WEB</h3>
+                                            <p class="text-slate-600 mt-1">Período para solicitação de matrícula em componentes curriculares via internet.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+                                                Responsável: Estudantes
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">28</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Resultado da Matrícula WEB</h3>
+                                            <p class="text-slate-600 mt-1">Divulgação do processamento e resultado da primeira etapa de matrícula.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" /><path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" /><path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" /></svg>
+                                                Responsável: STI
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold text-purple-800 mb-6 border-b-2 border-purple-200 pb-2">SETEMBRO</h2>
+                                <div class="space-y-8">
+                                     <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">01</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Início das Aulas</h3>
+                                            <p class="text-slate-600 mt-1">Começo oficial do semestre letivo de 2025.2.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
+                                                Responsável: Todos
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">01 a 05</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Congresso UFBA</h3>
+                                            <p class="text-slate-600 mt-1">Período de realização do congresso da universidade.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
+                                                Responsável: Todos
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">01 a 10</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Re-Matrícula WEB (1ª Fase)</h3>
+                                            <p class="text-slate-600 mt-1">Ajuste de matrícula realizado pelo estudante.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+                                                Responsável: Estudante
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">12 a 17</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Re-Matrícula WEB (2ª Fase)</h3>
+                                            <p class="text-slate-600 mt-1">Ajuste de matrícula realizado pelo colegiado do curso.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
+                                                Responsável: Colegiado
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">22</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Resultado da Re-Matrícula</h3>
+                                            <p class="text-slate-600 mt-1">Divulgação do resultado dos ajustes de matrícula.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" /><path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" /><path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" /></svg>
+                                                Responsável: STI
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">23 a 29</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Matrícula Extraordinária (último ajuste)</h3>
+                                            <p class="text-slate-600 mt-1">Matrícula para casos especiais e vagas remanescentes.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+                                                Responsável: Estudante
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                        <div class="date">30/09 a 29/10</div>
+                                        <div class="event-card">
+                                            <h3 class="font-semibold text-lg text-slate-800">Período de Trancamento de Matrícula</h3>
+                                            <p class="text-slate-600 mt-1">Prazo para solicitar o trancamento do semestre.</p>
+                                            <div class="responsible-tag">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+                                                Responsável: Estudante
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold text-purple-800 mb-6 border-b-2 border-purple-200 pb-2">JANEIRO 2026</h2>
+                                <div class="timeline-item flex flex-col sm:flex-row items-start gap-6">
+                                    <div class="date">10</div>
+                                    <div class="event-card">
+                                        <h3 class="font-semibold text-lg text-slate-800">Último Dia de Aulas</h3>
+                                        <p class="text-slate-600 mt-1">Encerramento do período letivo de 2025.2.</p>
+                                        <div class="responsible-tag">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
+                                            Responsável: Todos
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="disciplinas-2025-2" class="tab-content disciplinas-section space-y-12">
+                        <!-- Search Bar -->
+                        <div class="mb-8">
+                            <div class="flex gap-2">
+                                <input type="text" id="searchInput" placeholder="Buscar por disciplina, docente, código..." class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-violet-400 focus:border-violet-400 transition">
+                                <button id="searchButton" class="px-5 py-2 bg-violet-700 text-white font-semibold rounded-md hover:bg-violet-800 transition">Buscar</button>
+                            </div>
+                            <p id="noResultsMessage" class="text-slate-600 mt-3 hidden">Nenhum resultado encontrado.</p>
+                        </div>
+
+                        <section>
+                            <h3>2º Semestre</h3>
+                            <div class="space-y-8">
+                                <div>
+                                    <h4 class="day-heading">Segunda-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE05 - Gênero e Linguagem</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Terça-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE04 - Gênero e Relações de Poder</h4><p><strong>Docente:</strong> Ana Paula</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quarta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHF53 - Seminário Temático de Teorias Feministas</h4><p><strong>Docente:</strong> Marcia</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quinta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHF45 - Gênero e cultura</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Sexta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE39 - Organização Política do Brasil</h4><p><strong>Docente:</strong> Maise</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3>4º Semestre</h3>
+                             <div class="space-y-8">
+                                <div>
+                                    <h4 class="day-heading">Segunda-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHF47 - Gênero e Meio Ambiente</h4><p><strong>Docente:</strong> Marina</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Terça-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE22 - Gênero e Geração</h4><p><strong>Docente:</strong> Marcia</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quarta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE44 - Gênero e Violência</h4><p><strong>Docente:</strong> Ana Paula</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                        <div class="disciplina-card"><h4>FCHF54 - Seminário Temático Gênero, Feminismo e Educação</h4><p><strong>Docente:</strong> Darlane</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                        <div class="disciplina-card"><h4>FCHE37 - Gênero e Relações Raciais</h4><p><strong>Docente:</strong> Janja</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quinta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE41 - Gênero e Políticas Públicas I</h4><p><strong>Docente:</strong> Walkyria</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Sexta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE40 - Gênero e Desenvolvimento Regional</h4><p><strong>Docente:</strong> Luana</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3>6º Semestre</h3>
+                             <div class="space-y-8">
+                                <div>
+                                    <h4 class="day-heading">Segunda-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE28 - Estágio Supervisionado I</h4><p><strong>Docente:</strong> Darlane</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 12</p></div>
+                                        <div class="disciplina-card"><h4>FCHE30 - Estágio Supervisionado III</h4><p><strong>Docente:</strong> Darlane</p><p><strong>Horário:</strong> 20h20-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 12</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Terça-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE24 - Iniciação Cientifica aplicada II</h4><p><strong>Docente:</strong> Iole</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quarta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE25 - Gênero e Políticas Públicas III</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quinta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>CHE60 - Epistemologia, história das ciências e gênero</h4><p><strong>Docente:</strong> Maíra</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Sexta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE19 - Gênero e Interseccionalidades</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3>8º Semestre</h3>
+                            <div class="space-y-8">
+                                <div>
+                                    <h4 class="day-heading">Terça-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHF52 - Gênero e Comunicação</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quarta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE36 - Pedagogias Feministas</h4><p><strong>Docente:</strong> Vanessa</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quinta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE26 - Gênero e Trabalho ou Gênero e Economia</h4><p><strong>Docente:</strong> Luana</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3>Disciplinas Ofertadas a Outras Graduações</h3>
+                            <div class="space-y-8">
+                                <div>
+                                    <h4 class="day-heading">Segunda-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE02 - Introdução aos Estudos de Gênero (T01)</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> Segunda, 18:30-22:10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Terça-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE01 - Introdução aos Estudos de Gênero (T04)</h4><p><strong>Docente:</strong> Anderson</p><p><strong>Horário:</strong> Terça, 13:00-16:40</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p></div>
+                                        <div class="disciplina-card"><h4>FCHF47 - Gênero e Meio Ambiente</h4><p><strong>Docente:</strong> Marina</p><p><strong>Horário:</strong> Terça, 13:00-16:40</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p></div>
+                                        <div class="disciplina-card"><h4>FCHE46 - Metodologia de Projetos de Intervenção Social</h4><p><strong>Docente:</strong> Walkyria</p><p><strong>Horário:</strong> Terça, 13:00-16:40</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quarta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE03 - Introdução aos Estudos de Gênero (T02)</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> Quarta, 18:30-22:10</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="day-heading">Quinta-feira</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="disciplina-card"><h4>FCHE04 - Introdução aos Estudos de Gênero (T03)</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> Quinta, 13:00-16:40</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p></div>
+                                        <div class="disciplina-card"><h4>FCHE44 - Gênero e Violência</h4><p><strong>Docente:</strong> Karine (ADM)</p><p><strong>Horário:</strong> Quinta, manhã</p><p><strong>PAF:</strong> A definir</p><p><strong>Sala:</strong> A definir</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                         <section>
+                            <h3>Monografia I</h3>
+                             <p class="text-slate-600 mb-4">Horário a combinar diretamente com os orientadores.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div class="disciplina-card"><h4>Orientadora: Ana Paula Boscatti</h4></div>
+                                <div class="disciplina-card"><h4>Orientador: Anderson Fontes</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Luana Passos</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Darlane S. V. Andrade</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Iole Macedo Vanin</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Maise Caroline Zucco</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Maíra Kubik T. Mano</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Márcia dos Santos Macedo</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Marina Guimarães</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Rosangela Janja C. Araujo</h4></div>
+                            </div>
+                        </section>
+                        <section class="pb-8">
+                            <h3>Monografia II</h3>
+                             <p class="text-slate-600 mb-4">Horário a combinar diretamente com os orientadores.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div class="disciplina-card"><h4>Orientadora: Ana Paula Boscatti</h4></div>
+                                <div class="disciplina-card"><h4>Orientador: Anderson Fontes</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Luana Passos</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Darlane S. V. Andrade</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Iole Macedo Vanin</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Maise Caroline Zucco</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Maíra Kubik T. Mano</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Márcia dos Santos Macedo</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Marina Guimarães</h4></div>
+                                <div class="disciplina-card"><h4>Orientadora: Rosangela Janja C. Araujo</h4></div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div id="acesso" class="tab-content info-section space-y-6">
+                        <section>
+                            <h3>Como fazer o primeiro acesso ao SIGAA</h3>
+                            <p>O acesso ao novo sistema SIGAA será liberado em <strong>Agosto</strong>. Você não precisa se cadastrar, pois seu perfil será migrado automaticamente do sistema antigo.</p>
+                            <div class="highlight">
+                                <p><strong>Atenção:</strong> A UFBA enviará seu <strong>login e senha</strong> de forma progressiva. Fique de olho nos canais de comunicação oficiais, principalmente no seu e-mail institucional.</p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3>Onde encontrar ajuda e tutoriais</h3>
+                            <p>Se tiver qualquer problema de acesso ou dúvida sobre o sistema, o canal de suporte oficial é o e-mail:</p>
+                            <ul class="mt-2">
+                                <li>📧 <strong><a href="mailto:helpdesk@ufba.br" class="text-purple-700 hover:underline">helpdesk@ufba.br</a></strong></li>
+                            </ul>
+                            <p class="mt-4">Além disso, a universidade está preparando materiais de apoio para guiar os alunos. Você poderá encontrar vídeos e manuais no site do programa de modernização:</p>
+                             <ul class="mt-2">
+                                <li>🌐 <strong><a href="https://ufbasim.ufba.br/orienta%C3%A7%C3%B5es-sigaa" target="_blank" class="text-purple-700 hover:underline">ufbasim.ufba.br/orientações-sigaa</a></strong></li>
+                            </ul>
+                        </section>
+                    </div>
+                    
+                    <div id="matricula" class="tab-content info-section space-y-6">
+                        <section>
+                            <h3>Matrícula 100% Web: Dê adeus às filas!</h3>
+                            <p>Todo o processo de matrícula e ajustes é feito de forma online, com mais autonomia para você. Esqueça as filas e resolva tudo pelo portal.</p>
+                        </section>
+                        <section>
+                            <h3>A Matrícula não é por ordem de chegada!</h3>
+                            <p>Uma das maiores mudanças do SIGAA é o fim da "corrida pela matrícula". O sistema utiliza um <strong>escalonamento inteligente</strong> para distribuir as vagas de forma justa, com base em critérios de prioridade. Isso significa que não importa se você faz sua solicitação no primeiro ou no último dia do prazo, suas chances são as mesmas.</p>
+                        </section>
+                        <section>
+                            <h3>Critérios de Prioridade (Escalonamento)</h3>
+                            <p>O sistema preenche as vagas seguindo esta ordem de prioridade:</p>
+                            <ol class="list-decimal space-y-2 mt-2">
+                                <li><strong>Estudantes Regulares (Semestralizados):</strong> Alunos que estão seguindo a grade curricular do seu semestre ou retornando de mobilidade.</li>
+                                <li><strong>Formandos:</strong> Alunos que precisam de componentes específicos para concluir o curso.</li>
+                                <li><strong>Recuperação:</strong> Alunos que precisam cursar novamente uma matéria obrigatória.</li>
+                                <li><strong>Adiantamento:</strong> Alunos que desejam adiantar matérias de semestres futuros.</li>
+                            </ol>
+                            <div class="highlight">
+                                <p><strong>Dica de Ouro:</strong> É fundamental que você faça todas as suas solicitações na <strong>Matrícula WEB (1ª etapa)</strong>. As vagas que não forem ocupadas por alunos do curso serão liberadas como vagas livres para estudantes de toda a UFBA a partir da 2ª etapa.</p>
+                            </div>
+                        </section>
+                         <section>
+                            <h3>Flexibilização de Pré-requisito</h3>
+                            <p>Outra grande vantagem é que a solicitação de quebra de pré-requisito agora é feita <strong>diretamente no sistema</strong> durante a matrícula e rematrícula. As condições para isso são:</p>
+                             <ul class="list-disc space-y-2 mt-2">
+                                <li>Ter cursado o pré-requisito e sido reprovado com nota diferente de zero (exceto para formandos).</li>
+                                <li>Estar matriculado no pré-requisito no mesmo semestre.</li>
+                            </ul>
+                            <p class="mt-2">Isso diminui a burocracia e a necessidade de ir ao colegiado, que analisará apenas casos muito específicos.</p>
+                        </section>
+                    </div>
+                    
+                    <div id="horarios" class="tab-content info-section space-y-6">
+                        <section>
+                            <h3>Entendendo os Horários no SIGAA</h3>
+                            <p>O SIGAA utiliza uma codificação compacta para exibir os horários das turmas. Pode parecer confuso no início, mas é bem simples de entender. O código segue o formato: <strong>[Dia da Semana][Turno][Horários]</strong>.</p>
+                            <div class="highlight text-center">
+                                <p class="text-lg">Por exemplo, o código <strong>3T1234</strong> significa:</p>
+                                <p class="text-gray-600">Terça-feira (3), turno da Tarde (T), do 1º ao 4º horário.</p>
+                            </div>
+                             <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-2">Dia da Semana</h4>
+                                    <p>2 = Segunda</p>
+                                    <p>3 = Terça</p>
+                                    <p>4 = Quarta</p>
+                                    <p>5 = Quinta</p>
+                                    <p>6 = Sexta</p>
+                                    <p>7 = Sábado</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-2">Turno</h4>
+                                    <p>M = Manhã</p>
+                                    <p>T = Tarde</p>
+                                    <p>N = Noite</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-700 mb-2">Horários</h4>
+                                    <p>1 = 1º Horário</p>
+                                    <p>2 = 2º Horário</p>
+                                    <p>3 = 3º Horário</p>
+                                    <p>...</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                     
+                    <div id="beneficios" class="tab-content info-section space-y-6">
+                        <section>
+                            <h3>Benefícios do Novo Sistema</h3>
+                            <p>A implantação do SIGAA traz diversas vantagens para a sua vida acadêmica, como por exemplo:</p>
+                             <ol class="list-decimal space-y-3 mt-4">
+                                <li><strong>Diploma Digital:</strong> O novo sistema agiliza o processo de conclusão de curso com a emissão de diplomas digitais.</li>
+                                <li><strong>Histórico Atualizado:</strong> Acompanhe seu percurso acadêmico em tempo real, com informações instantâneas sobre a integralização curricular e pendências.</li>
+                                <li><strong>Atividades Complementares:</strong> A solicitação de aproveitamento de atividades agora é feita diretamente pelo portal, de forma mais simples e rápida.</li>
+                            </ol>
+                        </section>
+                        <section>
+                            <h3>Pontos de Atenção para a Matrícula</h3>
+                             <ul class="list-disc space-y-3 mt-2">
+                                <li><strong>Limite de Carga Horária:</strong> Fique atento ao limite de horas por semestre. Na primeira etapa de matrícula (Matrícula Web), o limite é de <strong>450 horas</strong>. Na segunda etapa (Re-matrícula), o máximo sobe para <strong>540 horas</strong>.</li>
+                                <li><strong>Falta de Notas:</strong> Se um professor não lançar sua nota de um semestre anterior, você pode ser impedido de se matricular no mesmo componente novamente ou de solicitar a quebra de pré-requisito. Acompanhe suas notas!</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="bg-gray-100 p-6 text-center">
+                <p class="text-xs text-gray-500 mb-2">
+                    Calendário e oferta de disciplinas organizados com base nos documentos oficiais da SUPAC e do Colegiado. As informações podem estar sujeitas a alterações.
+                </p>
+                <p class="text-xs text-gray-600 font-medium">
+                    Contato: generoediversidade@ufba.br | Tel: (71) 3283-6463
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const menuToggles = document.querySelectorAll('.nav-item[id$="-toggle"]');
+
+            function closeAllSubmenus() {
+                document.querySelectorAll('.submenu').forEach(submenu => {
+                    submenu.style.maxHeight = null;
+                });
+                document.querySelectorAll('.nav-item[id$="-toggle"]').forEach(toggle => {
+                    toggle.classList.remove('active');
+                    toggle.querySelector('.toggle-icon-plus').classList.remove('hidden');
+                    toggle.querySelector('.toggle-icon-minus').classList.add('hidden');
+                });
+            }
+
+            function openSubmenu(toggle) {
+                const submenu = toggle.nextElementSibling;
+                if (submenu) {
+                    submenu.style.maxHeight = submenu.scrollHeight + "px";
+                    toggle.classList.add('active');
+                    toggle.querySelector('.toggle-icon-plus').classList.add('hidden');
+                    toggle.querySelector('.toggle-icon-minus').classList.remove('hidden');
+                }
+            }
+
+            menuToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const submenu = toggle.nextElementSibling;
+                    const isSubmenuOpen = submenu && submenu.style.maxHeight;
+
+                    closeAllSubmenus();
+
+                    if (!isSubmenuOpen) {
+                        openSubmenu(toggle);
+                    }
+                });
+            });
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+
+                    document.querySelectorAll('.nav-item, .sub-nav-item').forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    button.classList.add('active');
+                    const activeContent = document.getElementById(tabId);
+                    if (activeContent) {
+                        activeContent.classList.add('active');
+                    }
+                    
+                    const parentMenu = button.closest('.submenu');
+                    if (parentMenu) {
+                        const parentToggle = parentMenu.previousElementSibling;
+                        openSubmenu(parentToggle);
+                        parentToggle.classList.add('active'); 
+                    } else {
+                        const associatedSubmenu = button.nextElementSibling;
+                        if (associatedSubmenu && associatedSubmenu.classList.contains('submenu')) {
+                           openSubmenu(button);
+                        }
+                    }
+                });
+            });
+
+            const calendarioToggle = document.getElementById('calendario-toggle');
+            if (calendarioToggle) {
+                openSubmenu(calendarioToggle);
+            }
+
+            // --- Lógica da Busca Disciplinas ---
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const noResultsMessage = document.getElementById('noResultsMessage');
+            const disciplinaCards = document.querySelectorAll('#disciplinas-2025-2 .disciplina-card');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                
+                if (!searchTerm) {
+                    resetSearch();
+                    return;
+                }
+
+                let firstMatch = null;
+                let foundMatch = false;
+
+                disciplinaCards.forEach(card => {
+                    const cardText = card.innerText.toLowerCase();
+                    if (cardText.includes(searchTerm)) {
+                        card.classList.remove('search-dim');
+                        card.classList.add('search-highlight');
+                        if (!firstMatch) {
+                            firstMatch = card;
+                        }
+                        foundMatch = true;
+                    } else {
+                        card.classList.remove('search-highlight');
+                        card.classList.add('search-dim');
+                    }
+                });
+
+                if (foundMatch) {
+                    noResultsMessage.classList.add('hidden');
+                    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    noResultsMessage.classList.remove('hidden');
+                    resetSearch(false);
+                }
+            }
+            
+            function resetSearch(clearHighlights = true) {
+                 disciplinaCards.forEach(card => {
+                    card.classList.remove('search-dim');
+                    if(clearHighlights) {
+                       card.classList.remove('search-highlight');
+                    }
+                });
+                if(clearHighlights) {
+                    noResultsMessage.classList.add('hidden');
+                }
+            }
+
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', (event) => {
+                if (event.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            searchInput.addEventListener('input', () => {
+                if (searchInput.value === '') {
+                    resetSearch();
+                }
+            });
+
+            // --- Lógica da Busca Calendário ---
+            const calendarSearchInput = document.getElementById('calendarSearchInput');
+            const calendarSearchButton = document.getElementById('calendarSearchButton');
+            const calendarNoResultsMessage = document.getElementById('calendarNoResultsMessage');
+            const calendarItems = document.querySelectorAll('#calendario-2025-2 .timeline-item');
+
+            function performCalendarSearch() {
+                const searchTerm = calendarSearchInput.value.toLowerCase().trim();
+
+                if (!searchTerm) {
+                    resetCalendarSearch();
+                    return;
+                }
+
+                let firstMatch = null;
+                let foundMatch = false;
+
+                calendarItems.forEach(item => {
+                    const itemText = item.innerText.toLowerCase();
+                    if (itemText.includes(searchTerm)) {
+                        item.classList.remove('search-dim');
+                        item.classList.add('search-highlight');
+                         if (!firstMatch) {
+                            firstMatch = item;
+                        }
+                        foundMatch = true;
+                    } else {
+                        item.classList.remove('search-highlight');
+                        item.classList.add('search-dim');
+                    }
+                });
+                
+                if (foundMatch) {
+                    calendarNoResultsMessage.classList.add('hidden');
+                    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    calendarNoResultsMessage.classList.remove('hidden');
+                    resetCalendarSearch(false);
+                }
+            }
+
+            function resetCalendarSearch(clearHighlights = true) {
+                calendarItems.forEach(item => {
+                    item.classList.remove('search-dim');
+                     if(clearHighlights) {
+                       item.classList.remove('search-highlight');
+                    }
+                });
+                 if(clearHighlights) {
+                    calendarNoResultsMessage.classList.add('hidden');
+                }
+            }
+
+            calendarSearchButton.addEventListener('click', performCalendarSearch);
+            calendarSearchInput.addEventListener('keyup', (event) => {
+                if (event.key === 'Enter') {
+                    performCalendarSearch();
+                }
+            });
+             calendarSearchInput.addEventListener('input', () => {
+                if (calendarSearchInput.value === '') {
+                    resetCalendarSearch();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
