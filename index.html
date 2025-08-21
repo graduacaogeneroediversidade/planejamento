@@ -51,14 +51,14 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .event-card, .disciplina-card {
+        .event-card, .disciplina-card, .info-card {
             background-color: #ffffff;
             border-radius: 0.5rem;
             padding: 1rem 1.25rem;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
-        .event-card {
+        .event-card, .info-card {
              border-left: 4px solid #9333ea; /* purple-600 */
         }
         .responsible-tag {
@@ -85,21 +85,27 @@
             font-size: 1.25rem;
             font-weight: 700;
             color: #5b21b6; /* violet-700 */
-            margin-top: 0;
-            margin-bottom: 0;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
         }
-        .info-section p, .info-section li {
+        .info-card h4 {
+             font-size: 1.125rem;
+             font-weight: 600;
+             color: #1e293b;
+             margin-bottom: 0.75rem;
+        }
+        .info-section p, .info-section li, .info-card p, .info-card li {
             color: #334155; /* slate-700 */
             line-height: 1.7;
             font-size: 1rem;
         }
-        .info-section ul, .info-section ol {
+        .info-section ul, .info-section ol, .info-card ul, .info-card ol {
             list-style-position: inside;
             padding-left: 0.5rem;
             margin-top: 1rem;
             space-y: 0.5rem;
         }
-        .info-section .highlight {
+        .info-section .highlight, .info-card .highlight {
             background-color: #fefce8; /* yellow-50 */
             padding: 1.25rem;
             border-left: 4px solid #facc15; /* yellow-400 */
@@ -416,7 +422,7 @@
                                 <h3>2º Semestre</h3>
                                 <div class="space-y-8">
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Segunda-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Segunda-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE05 - Gênero e Linguagem</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -424,7 +430,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Terça-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE04 - Gênero e Relações de Poder</h4><p><strong>Docente:</strong> Ana Paula</p><p><strong>Pré-requisitos:</strong> FCHE38</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -432,7 +438,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quarta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHF53 - Seminário Temático de Teorias Feministas</h4><p><strong>Docente:</strong> Marcia</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -440,7 +446,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quinta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHE45 - Gênero e cultura</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -448,7 +454,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Sexta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Sexta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE39 - Organização Política do Brasil</h4><p><strong>Docente:</strong> Maise</p><p><strong>Pré-requisitos:</strong> FCHE38</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -461,7 +467,7 @@
                                 <h3>4º Semestre</h3>
                                  <div class="space-y-8">
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Segunda-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Segunda-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHF47 - Gênero e Meio Ambiente (T01)</h4><p><strong>Docente:</strong> Marina</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -469,7 +475,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Terça-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHE22 - Gênero e Geração</h4><p><strong>Docente:</strong> Marcia</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -479,7 +485,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quarta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE44 - Gênero e Violência (T01)</h4><p><strong>Docente:</strong> Ana Paula</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -487,7 +493,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quinta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE41 - Gênero e Políticas Públicas I</h4><p><strong>Docente:</strong> Walkyria</p><p><strong>Pré-requisitos:</strong> FCHE38, FCHE39, FCHE04, FCHE43</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -495,7 +501,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Sexta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Sexta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE40 - Gênero e Desenvolvimento Regional</h4><p><strong>Docente:</strong> Luana</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -508,7 +514,7 @@
                                 <h3>6º Semestre</h3>
                                  <div class="space-y-8">
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Segunda-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Segunda-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>GFCH0003 - Estágio Supervisionado I</h4><p><strong>Docente:</strong> Darlane</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 12</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -518,7 +524,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Terça-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE24 - Iniciação Cientifica aplicada II</h4><p><strong>Docente:</strong> Iole</p><p><strong>Pré-requisitos:</strong> FCHE23</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -526,7 +532,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quarta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE25 - Gênero e Políticas Públicas III</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Pré-requisitos:</strong> FCHE38, FCHE39, FCHE04, FCHE43, FCHE41, FCHE42</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -534,7 +540,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quinta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHE60 - Epistemologia, história das ciências e gênero</h4><p><strong>Docente:</strong> Maíra</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -542,7 +548,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Sexta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Sexta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHE19 - Gênero e Interseccionalidades</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -555,7 +561,7 @@
                                 <h3>8º Semestre</h3>
                                 <div class="space-y-8">
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Terça-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHF52 - Gênero e Comunicação</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -563,7 +569,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quarta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHE36 - Pedagogias Feministas</h4><p><strong>Docente:</strong> Vanessa</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -571,7 +577,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quinta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHE26 - Gênero e Trabalho</h4><p><strong>Docente:</strong> Luana</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -584,7 +590,7 @@
                                 <h3>Disciplinas Ofertadas a Outras Graduações</h3>
                                 <div class="space-y-8">
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Segunda-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Segunda-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE02 - Introdução aos Estudos de Gênero (T01)</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> Segunda, 18:30-22:10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -592,7 +598,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Terça-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-optativa"><h4>FCHF47 - Gênero e Meio Ambiente (T02)</h4><p><strong>Docente:</strong> Marina</p><p><strong>Horário:</strong> Terça, 13:00-16:40</p><p><strong>PAF:</strong> PSL</p><p><strong>Sala:</strong> A definir</p><div class="status-tag tag-optativa">Optativa</div></div>
@@ -602,7 +608,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quarta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE02 - Introdução aos Estudos de Gênero (T02)</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> Quarta, 18:30-22:10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -610,7 +616,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-slate-700 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">Quinta-feira</div>
+                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
                                         <div class="w-full">
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                                 <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE44 - Gênero e Violência (T02)</h4><p><strong>Docente:</strong> Karine (ADM)</p><p><strong>Horário:</strong> Quinta, manhã</p><p><strong>PAF:</strong> PSL</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
@@ -658,105 +664,138 @@
                     </div>
 
                     <div id="acesso" class="tab-content info-section p-4 sm:p-6 md:p-10">
-                        <div class="p-4 bg-violet-50 rounded-lg border border-violet-200">
-                            <h3>📢 Atenção, estudantes!</h3>
-                            <p>O novo SIGAA estará disponível a partir de <strong>26/08</strong>.</p>
-                            <p>Acesse aqui: <a href="https://sigaa.ufba.br/sigaa" target="_blank" class="text-purple-700 hover:underline">https://sigaa.ufba.br/sigaa</a></p>
+                        <div class="space-y-8">
+                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">📢 Atenção</div>
+                                <div class="info-card w-full">
+                                    <h4>Matrícula 2025.2</h4>
+                                    <p>A matrícula para o semestre 2025.2 será 100% online através do novo SIGAA.</p>
+                                    <p><strong>Período:</strong> 26 a 31 de agosto de 2025</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Como Acessar</div>
+                                <div class="info-card w-full">
+                                    <p><strong>Link Acesso:</strong> <a href="https://sigaa.ufba.br/sigaa" target="_blank" class="text-purple-700 hover:underline">https://sigaa.ufba.br/sigaa</a></p>
+                                    <ul class="list-disc mt-2">
+                                        <li><strong>Login:</strong> Seu número de CPF.</li>
+                                        <li><strong>Senha:</strong> Será enviada para seu e-mail cadastrado na UFBA até 22 de agosto.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Solução de Problemas</div>
+                                <div class="info-card w-full">
+                                    <p class="mt-0"><strong>Não recebeu a senha?</strong><br>
+                                    Entre no <a href="https://sigaa.ufba.br/sigaa" target="_blank" class="text-purple-700 hover:underline">SIGAA</a> e clique em "Recuperar Senha".</p>
+                                    <p class="mt-4"><strong>Não lembra do seu e-mail?</strong><br>
+                                    Acesse <a href="http://www.autenticacao.ufba.br" target="_blank" class="text-purple-700 hover:underline">www.autenticacao.ufba.br</a> e clique em "Esqueci meu login ou senha".</p>
+                                    <p class="mt-4"><strong>Quer atualizar seu e-mail?</strong><br>
+                                    Preencha o <a href="https://forms.gle/XxBRwVUd95t6t33u9" target="_blank" class="text-purple-700 hover:underline">Formulário de Atualização</a>.</p>
+                                </div>
+                            </div>
+                             <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Suporte Técnico</div>
+                                <div class="info-card w-full">
+                                    <p><strong>Problemas técnicos com o SIGAA:</strong><br><a href="mailto:helpdesk@ufba.br" class="text-purple-700 hover:underline">helpdesk@ufba.br</a></p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mt-8 space-y-8">
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 pt-1"><h4 class="mt-0">1️⃣ Como será o login</h4></div>
-                                <div class="w-full">
-                                    <p class="font-semibold mt-0">Estudantes que já usaram SIGAA, SIPAC ou SIGRH:</p>
-                                    <ul class="list-disc ml-5 !mt-2"><li>Use o login e senha de sempre.</li><li>Nenhuma ação adicional é necessária ✅</li></ul>
-                                    <p class="font-semibold mt-4">Estudantes que farão o primeiro acesso (ingressantes ou veteranos sem login):</p>
-                                    <ul class="list-disc ml-5 !mt-2"><li>Login: número do CPF</li><li>Senha: será enviada para o e-mail cadastrado</li><li>📧 Verifique sua caixa de entrada e spam a partir de 22/08</li></ul>
-                                    <p class="font-semibold mt-4">Se não tiver ou não lembrar a senha da Rede UFBA (e-mail institucional):</p>
-                                    <ul class="list-disc ml-5 !mt-2"><li>Acesse: <a href="http://www.autenticacao.ufba.br" target="_blank" class="text-purple-700 hover:underline">www.autenticacao.ufba.br</a></li><li>Clique em “Primeiro Acesso” para criar ou recuperar sua senha</li></ul>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 pt-1"><h4>2️⃣ Caso não receba o e-mail</h4></div>
-                                <div class="w-full">
-                                    <ul class="list-disc ml-5 !mt-0"><li>Acesse: <a href="#" class="text-purple-700 hover:underline">Recuperar Senha SIGAA</a></li><li>Informe seu CPF e e-mail para gerar uma nova senha</li></ul>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 pt-1"><h4>3️⃣ Atualização de e-mail</h4></div>
-                                <div class="w-full">
-                                    <ul class="list-disc ml-5 !mt-0"><li>Se seu e-mail estiver desatualizado ou se desejar usar o e-mail institucional da UFBA, preencha: <a href="#" class="text-purple-700 hover:underline">Formulário de Atualização de E-mail</a></li><li>✅ Recomendamos priorizar o e-mail institucional para receber senhas, notificações e informações importantes</li></ul>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 pt-1"><h4>4️⃣ Onde encontrar ajuda</h4></div>
-                                <div class="w-full">
-                                    <ul class="list-disc ml-5 !mt-0"><li><strong>Suporte oficial:</strong> 📧 <a href="mailto:helpdesk@ufba.br" class="text-purple-700 hover:underline">helpdesk@ufba.br</a></li><li><strong>Tutoriais, vídeos e manuais:</strong> 🌐 <a href="http://ufbasim.ufba.br/orientações-sigaa" target="_blank" class="text-purple-700 hover:underline">ufbasim.ufba.br/orientações-sigaa</a> e <a href="http://www.ufbasim.ufba.br/sigaa" target="_blank" class="text-purple-700 hover:underline">www.ufbasim.ufba.br/sigaa</a></li></ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="highlight mt-8"><h4>⚠️ Dica importante:</h4><p>Manter seus dados atualizados evita problemas no acesso, especialmente durante períodos como a matrícula web.</p></div>
                     </div>
                     
                     <div id="matricula" class="tab-content info-section p-4 sm:p-6 md:p-10">
-                        <div class="p-4 bg-violet-50 rounded-lg border border-violet-200">
-                            <h3>MATRÍCULA 2025.2 – BEGD / UFBA</h3>
-                            <p class="font-semibold text-slate-600">📌 Agora pelo novo sistema SIGAA – 100% Web</p>
-                            <div class="mt-4 space-y-2 text-slate-500"><p>🚫 Sem acesso pelo SIACWEB</p><p>🚫 Sem matrícula ou ajuste presencial</p></div>
-                        </div>
-                        <div class="mt-8 space-y-8">
+                        <h3 class="!mb-8">Matrícula 2025.2 via SIGAA</h3>
+                         <div class="space-y-8">
                             <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-56 flex-shrink-0 pt-1"><h4>1. Vantagens do Novo Sistema</h4></div>
-                                <div class="w-full"><ul class="!mt-0"><li>Matrícula e ajustes 100% online</li><li>Mais autonomia para o estudante</li><li>Fim das filas e da “corrida” pela matrícula</li><li>Mesmas chances de conseguir vaga independentemente do dia/hora da solicitação</li></ul></div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-56 flex-shrink-0 pt-1"><h4>2. Critérios de Prioridade</h4></div>
-                                <div class="w-full">
-                                    <ol class="list-decimal !mt-0"><li><strong>Estudantes Regulares (Semestralizados)</strong> – seguindo a grade curricular ou retornando de mobilidade acadêmica</li><li><strong>Formandos</strong> – precisam de disciplinas para concluir o curso</li><li><strong>Recuperação</strong> – reprovados ou que trancaram disciplinas obrigatórias</li><li><strong>Adiantamento</strong> – antecipação de disciplinas de semestres futuros</li><li><strong>Desempate</strong> – definido pelo Coeficiente de Rendimento (CR)</li></ol>
-                                    <div class="highlight"><p>💡 <strong>Dica de Ouro:</strong> Faça todas as suas solicitações na Matrícula WEB (1ª etapa).</p><p class="mt-2">Vagas não preenchidas serão liberadas para outros cursos na Re-Matrícula WEB (2ª etapa).</p></div>
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">📌 100% Web</div>
+                                <div class="info-card w-full">
+                                    <p>Todo o processo é feito pelo novo sistema SIGAA.</p>
+                                    <p class="mt-2">🚫 Sem acesso pelo SIACWEB</p>
+                                    <p>🚫 Sem matrícula ou ajuste presencial</p>
                                 </div>
                             </div>
                             <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-56 flex-shrink-0 pt-1"><h4>3. Flexibilização de Pré-requisito</h4></div>
-                                <div class="w-full">
-                                    <p class="!mt-0">A solicitação é feita diretamente no SIGAA durante a matrícula ou rematrícula.</p>
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">1. Vantagens</div>
+                                <div class="info-card w-full">
+                                    <ul>
+                                        <li>Matrícula e ajustes 100% online</li>
+                                        <li>Mais autonomia para o estudante</li>
+                                        <li>Fim das filas e da “corrida” pela matrícula</li>
+                                        <li>Mesmas chances de vaga, não importa a hora da solicitação</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">2. Critérios de Prioridade</div>
+                                <div class="info-card w-full">
+                                    <ol class="list-decimal !mt-0">
+                                        <li><strong>Estudantes Regulares (Semestralizados)</strong></li>
+                                        <li><strong>Formandos</strong></li>
+                                        <li><strong>Recuperação</strong> (reprovados ou trancados)</li>
+                                        <li><strong>Adiantamento</strong> de disciplinas</li>
+                                        <li><strong>Desempate:</strong> Coeficiente de Rendimento (CR)</li>
+                                    </ol>
+                                    <div class="highlight"><p>💡 <strong>Dica de Ouro:</strong> Faça todas as suas solicitações na Matrícula WEB (1ª etapa). Vagas remanescentes serão liberadas para outros cursos na 2ª etapa.</p></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">3. Flexibilização de Pré-requisito</div>
+                                <div class="info-card w-full">
+                                    <p>A solicitação é feita no SIGAA durante a matrícula.</p>
                                     <p class="mt-2"><strong>Permitida quando:</strong></p>
-                                    <ul class="!mt-2"><li>Já cursou o pré-requisito e foi reprovado (nota ≠ 0) – exceto formandos.</li><li>Está matriculado no pré-requisito no mesmo semestre.</li></ul>
-                                    <p class="mt-2"><strong>Casos especiais:</strong> análise pelo colegiado.</p>
+                                    <ul class="!mt-2"><li>Já cursou o pré-requisito e foi reprovado (nota ≠ 0).</li><li>Está matriculado no pré-requisito no mesmo semestre.</li></ul>
                                 </div>
                             </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-56 flex-shrink-0 pt-1"><h4>4. Pontos de Atenção</h4></div>
-                                <div class="w-full">
-                                    <p class="!mt-0"><strong>Limite de Carga Horária:</strong></p>
+                             <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">4. Pontos de Atenção</div>
+                                <div class="info-card w-full">
+                                    <p><strong>Limite de Carga Horária:</strong></p>
                                     <ul class="!mt-2"><li>1ª Etapa (Matrícula Web) – até 450 horas.</li><li>2ª Etapa (Rematrícula) – até 540 horas.</li></ul>
                                     <p class="mt-4"><strong>Falta de Lançamento de Notas:</strong></p>
-                                    <p class="!mt-2">Se um professor não lançar sua nota de semestre anterior, você poderá ser impedido de:</p>
-                                    <ul class="!mt-2"><li>Cursar novamente o mesmo componente.</li><li>Solicitar a quebra de pré-requisito.</li></ul>
-                                    <p class="mt-2 font-semibold">Atenção: Acompanhe regularmente suas notas no sistema.</p>
+                                    <p class="!mt-2">A falta de nota do semestre anterior pode impedir a matrícula em componentes sequenciais ou a quebra de pré-requisito.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div id="horarios" class="tab-content info-section p-4 sm:p-6 md:p-10">
-                        <h3>Entendendo os Horários no SIGAA</h3>
-                        <p>O SIGAA utiliza uma codificação compacta para exibir os horários das turmas. Pode parecer confuso no início, mas é bem simples de entender. O código segue o formato: <strong>[Dia da Semana][Turno][Horários]</strong>.</p>
-                        <div class="highlight text-center"><p class="text-lg">Por exemplo, o código <strong>3T1234</strong> significa:</p><p class="text-gray-600">Terça-feira (3), turno da Tarde (T), do 1º ao 4º horário.</p></div>
-                         <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                            <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Dia da Semana</h4><p>2 = Segunda</p><p>3 = Terça</p><p>4 = Quarta</p><p>5 = Quinta</p><p>6 = Sexta</p><p>7 = Sábado</p></div>
-                            <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Turno</h4><p>M = Manhã</p><p>T = Tarde</p><p>N = Noite</p></div>
-                            <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Horários</h4><p>1 = 1º Horário</p><p>2 = 2º Horário</p><p>3 = 3º Horário</p><p>...</p></div>
+                        <h3 class="!mb-8">Entendendo os Horários no SIGAA</h3>
+                        <div class="space-y-8">
+                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Codificação</div>
+                                <div class="info-card w-full">
+                                    <p>O SIGAA usa um código para os horários no formato: <strong>[Dia][Turno][Horários]</strong>.</p>
+                                    <div class="highlight text-center"><p class="text-lg">Exemplo: <strong>3T1234</strong></p><p class="text-gray-600">Terça-feira (3), turno da Tarde (T), do 1º ao 4º horário.</p></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Legenda</div>
+                                <div class="info-card w-full">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                                        <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Dia da Semana</h4><p>2 = Segunda</p><p>3 = Terça</p><p>4 = Quarta</p><p>5 = Quinta</p><p>6 = Sexta</p><p>7 = Sábado</p></div>
+                                        <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Turno</h4><p>M = Manhã</p><p>T = Tarde</p><p>N = Noite</p></div>
+                                        <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Horários</h4><p>1 = 1º Horário</p><p>2 = 2º Horário</p><p>3 = 3º Horário</p><p>...</p></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                      
                     <div id="beneficios" class="tab-content info-section p-4 sm:p-6 md:p-10">
-                        <h3>Benefícios do Novo Sistema SIGAA</h3>
-                        <p>A implantação do SIGAA traz melhorias significativas para a vida acadêmica:</p>
-                        <ul class="list-disc mt-4 space-y-3">
-                            <li><strong>Diploma Digital:</strong> Emissão rápida e segura de diplomas digitais, acelerando o processo de conclusão do curso.</li>
-                            <li><strong>Histórico Acadêmico em Tempo Real:</strong> Consulte instantaneamente seu progresso, pendências e integralização curricular.</li>
-                            <li><strong>Atividades Complementares:</strong> Solicite o aproveitamento diretamente pelo portal, de forma prática e sem burocracia.</li>
-                        </ul>
+                        <h3 class="!mb-8">Benefícios do Novo Sistema SIGAA</h3>
+                        <div class="space-y-8">
+                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Vantagens</div>
+                                <div class="info-card w-full">
+                                    <p>A implantação do SIGAA traz melhorias para a vida acadêmica:</p>
+                                    <ul class="list-disc mt-4 space-y-3">
+                                        <li><strong>Diploma Digital:</strong> Emissão rápida e segura de diplomas.</li>
+                                        <li><strong>Histórico Acadêmico em Tempo Real:</strong> Consulte seu progresso e pendências instantaneamente.</li>
+                                        <li><strong>Atividades Complementares:</strong> Solicite o aproveitamento diretamente pelo portal, sem burocracia.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </main>
             </div>
