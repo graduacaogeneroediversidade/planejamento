@@ -345,7 +345,7 @@
                             <h4 class="font-black text-lg">${disciplina.cod ? disciplina.cod + ' - ' : ''}${disciplina.nome}</h4>
                             <p><strong>Docente:</strong> ${disciplina.prof}</p>
                             <p><strong>Horário:</strong> ${disciplina.horario}</p>
-                            ${disciplina.paf ? `<p><strong>Local:</strong> ${disciplina.paf}, Sala ${disciplina.sala}</p>` : ''}
+                            ${disciplina.paf ? `<p><strong>Local:</strong> ${disciplina.paf}</p><p><strong>Sala:</strong> ${disciplina.sala}</p>` : ''}
                             ${disciplina.vagas ? `<p><strong>Vagas:</strong> ${disciplina.vagas}</p>` : ''}
                             ${disciplina.pre ? `<p><strong>Pré-requisitos:</strong> ${disciplina.pre}</p>` : ''}
                             <span class="tag ${tipoClass} mt-2">${disciplina.tipo}</span>
