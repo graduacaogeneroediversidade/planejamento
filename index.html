@@ -3,1017 +3,607 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planejamento Acadêmico 2025.2 - Gênero e Diversidade UFBA</title>
+    <title>Planejamento Acadêmico Interativo - Gênero e Diversidade UFBA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9; /* slate-100 */
-        }
-        .header-bg {
-            background: linear-gradient(135deg, #581c87 0%, #7e22ce 100%); 
-        }
-        .nav-item, .sub-nav-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            width: 100%;
-            padding: 0.875rem 1.25rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            color: #475569; /* slate-600 */
-            border-radius: 0.5rem;
-        }
-        .sub-nav-item {
-            padding-left: 2.75rem;
-            font-weight: 500;
-        }
-        .nav-item.active, .sub-nav-item.active {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #46178F;
             color: #ffffff;
-            background-color: #6d28d9; /* violet-800 */
         }
-        .nav-item:hover:not(.active), .sub-nav-item:hover:not(.active) {
-            background-color: #e2e8f0; /* slate-200 */
-            color: #1e293b; /* slate-800 */
+        .kahoot-header {
+            background-color: #333;
+        }
+        .kahoot-main-nav button {
+            transition: all 0.2s ease-in-out;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border-radius: 0.5rem;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 0 #2c2c2c;
+            transform: translateY(0);
+        }
+        .kahoot-main-nav button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #2c2c2c;
+        }
+        .kahoot-main-nav button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #2c2c2c;
         }
         .tab-content {
             display: none;
         }
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: zoomIn 0.5s ease-in-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
-        .event-card, .disciplina-card, .info-card {
+        .kahoot-card {
+            background-color: #fff;
+            color: #333;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+        .calendar-event-card {
             background-color: #ffffff;
-            border-radius: 0.5rem;
-            padding: 1rem 1.25rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .event-card, .info-card {
-             border-left: 4px solid #9333ea; /* purple-600 */
-        }
-        .responsible-tag {
-            display: inline-flex;
+            color: #333;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 0px rgba(0,0,0,0.1);
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            background-color: #f3e8ff;
-            color: #581c87;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
+            gap: 1rem;
         }
-        .info-section h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #4c1d95; /* violet-900 */
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid #ddd6fe; /* violet-200 */
-        }
-         .info-section h4 {
+        .calendar-event-card .date {
+            font-weight: 900;
             font-size: 1.25rem;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .calendar-event-card .details h3 {
             font-weight: 700;
-            color: #5b21b6; /* violet-700 */
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
-        .info-card h4 {
-             font-size: 1.125rem;
-             font-weight: 600;
-             color: #1e293b;
-             margin-bottom: 0.75rem;
+        .disciplina-accordion-btn, .sigaa-accordion-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.5rem; /* T3 */
+            font-weight: 900;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
         }
-        .info-section p, .info-section li, .info-card p, .info-card li {
-            color: #334155; /* slate-700 */
-            line-height: 1.7;
-            font-size: 1rem;
+         .disciplina-accordion-btn:hover, .sigaa-accordion-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0px rgba(0,0,0,0.2);
         }
-        .info-section ul, .info-section ol, .info-card ul, .info-card ol {
-            list-style-position: inside;
-            padding-left: 0.5rem;
-            margin-top: 1rem;
-            space-y: 0.5rem;
-        }
-        .info-section .highlight, .info-card .highlight {
-            background-color: #fefce8; /* yellow-50 */
-            padding: 1.25rem;
-            border-left: 4px solid #facc15; /* yellow-400 */
-            border-radius: 0.5rem;
-            margin-top: 1.5rem;
-        }
-        .submenu {
+        .disciplina-accordion-content, .sigaa-accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .disciplinas-section h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #4c1d95; /* violet-900 */
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid #ddd6fe; /* violet-200 */
+            transition: max-height 0.5s ease-in-out;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 0 1rem;
         }
         .disciplina-card {
-            height: 100%;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 0px rgba(0,0,0,0.2);
         }
-        .disciplina-card h4 {
-            font-weight: 600;
-            font-size: 1.125rem;
-            color: #1e293b;
+        .disciplina-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 0px rgba(0,0,0,0.2);
         }
-        .disciplina-card p {
-            font-size: 0.875rem;
-            color: #475569;
-            margin-top: 0.5rem;
-        }
-        .disciplina-card p > strong {
-            font-weight: 500;
-            color: #334155;
-        }
-        /* Estilos da Busca */
-        .search-highlight {
-            box-shadow: 0 0 0 3px #a78bfa; /* violet-300 */
-            transform: scale(1.02);
-        }
-        .search-dim {
-            opacity: 0.4;
-        }
-        /* Estilos Disciplina Obrigatória/Optativa */
-        .disciplina-obrigatoria {
-            border-left: 4px solid #db2777; /* pink-600 */
-        }
-        .disciplina-optativa {
-            border-left: 4px solid #7e22ce; /* purple-700 */
-        }
-        .status-tag {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.125rem 0.5rem;
-            border-radius: 0.25rem;
+        .tag {
             display: inline-block;
-            margin-top: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
-        .tag-obrigatoria {
-            background-color: #fce7f3; /* pink-100 */
-            color: #be185d; /* pink-700 */
-        }
-        .tag-optativa {
-            background-color: #f5f3ff; /* violet-50 */
-            color: #6d28d9; /* violet-700 */
-        }
+        
+        /* QUIZ STYLES */
+        #quiz-container { background-color: #333; padding: 2rem; border-radius: 1rem; }
+        #quiz-question { background-color: #fff; color: #333; padding: 2rem; border-radius: 0.5rem; font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
+        #quiz-timer { font-size: 3rem; font-weight: 900; text-align: center; margin-bottom: 1rem; }
+        .quiz-option { font-size: 1.25rem; font-weight: 700; color: white; padding: 1.5rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 0 rgba(0,0,0,0.3); display: flex; align-items: center; gap: 1rem; }
+        .quiz-option:hover { transform: translateY(-2px); box-shadow: 0 6px 0 rgba(0,0,0,0.3); }
+        .quiz-option.disabled { opacity: 0.5; cursor: not-allowed; }
+        #feedback-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        #feedback-modal.show { opacity: 1; pointer-events: auto; }
+        #feedback-content { padding: 2rem; border-radius: 1rem; text-align: center; color: #fff; font-size: 1.5rem; font-weight: 700; transform: scale(0.8); transition: transform 0.3s; }
+        #feedback-modal.show #feedback-content { transform: scale(1); }
+        #feedback-content.correct { background-color: #28a745; }
+        #feedback-content.incorrect { background-color: #dc3545; }
+        #results-screen { display: none; text-align: center; }
+        #feedback-points { font-size: 2.5rem; font-weight: 900; margin-top: 1rem; }
     </style>
 </head>
-<body class="antialiased text-gray-800">
+<body class="p-4 sm:p-8">
 
-    <div class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-4">
-        
-        <main class="w-full max-w-7xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
-            
-            <header class="header-bg p-4 md:p-6 text-white flex items-center justify-center text-center">
-                <img src="https://i.imgur.com/T6iOecJ.png" alt="Logotipo NEIM" class="h-24 w-auto mr-4 sm:mr-6 hidden sm:block" onerror="this.onerror=null; this.src='https://placehold.co/96x96/ffffff/581c87?text=Logo';">
-                <div>
-                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Planejamento Acadêmico</h1>
-                    <p class="mt-2 text-base sm:text-lg font-medium text-purple-200">Bacharelado em Estudos de Gênero e Diversidade - UFBA</p>
+    <div class="max-w-7xl mx-auto">
+        <header class="kahoot-header p-6 rounded-t-lg text-center">
+             <h1 class="text-3xl sm:text-5xl font-black tracking-wider">Planejamento Acadêmico 2025.2</h1>
+             <p class="text-lg sm:text-xl font-bold text-gray-300 mt-2">Bacharelado em Estudos de Gênero e Diversidade - UFBA</p>
+        </header>
+
+        <nav class="kahoot-main-nav grid grid-cols-2 lg:grid-cols-4 gap-2 p-2 bg-gray-700">
+            <button class="tab-button bg-red-600" data-tab="calendario">🗓️ Calendário</button>
+            <button class="tab-button bg-blue-600" data-tab="disciplinas">📚 Disciplinas</button>
+            <button class="tab-button bg-yellow-500" data-tab="sigaa">🎓 SIGAA</button>
+            <button class="tab-button bg-green-600" data-tab="quiz">🚀 Quiz</button>
+        </nav>
+
+        <main class="bg-gray-800 p-4 sm:p-8 rounded-b-lg">
+            <div id="calendario" class="tab-content active">
+                <div class="kahoot-card" style="background-color: #2d00f7;">
+                    <h2 class="text-4xl font-black text-white mb-6">🗓️ Calendário Acadêmico 2025.2</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-black text-white mb-4">Agosto</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="calendar-event-card"><div class="date bg-red-500 text-white">27 a 31</div><div class="details"><h3>Matrícula WEB</h3><p>Responsável: Estudantes</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-blue-500 text-white">30/08 a 30/10</div><div class="details"><h3>Colação de Grau (2025.1)</h3><p>Responsável: Colegiado / Formandos</p></div></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-black text-white mb-4">Setembro</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="calendar-event-card"><div class="date bg-blue-500 text-white">01 a 03</div><div class="details"><h3>1º Ajuste de Matrícula</h3><p>Responsável: Colegiados</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-green-500 text-white">01</div><div class="details"><h3>Início das Aulas</h3><p>Responsável: Todos</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-blue-500 text-white">01 a 05</div><div class="details"><h3>Congresso UFBA</h3><p>Responsável: Todos</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-yellow-500 text-black">08</div><div class="details"><h3>Resultado da Matrícula WEB</h3><p>Responsável: STI</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-red-500 text-white">11 a 16</div><div class="details"><h3>Re-Matrícula WEB</h3><p>Responsável: Estudante</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-blue-500 text-white">17 a 19</div><div class="details"><h3>2º Ajuste de Matrícula</h3><p>Responsável: Colegiados</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-yellow-500 text-black">24</div><div class="details"><h3>Resultado da Re-Matrícula</h3><p>Responsável: STI</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-blue-500 text-white">25 a 29</div><div class="details"><h3>Matrícula Extraordinária</h3><p>Responsável: Estudante</p></div></div>
+                                <div class="calendar-event-card"><div class="date bg-blue-500 text-white">30/09 a 29/10</div><div class="details"><h3>Período de Trancamento</h3><p>Responsável: Estudante</p></div></div>
+                            </div>
+                        </div>
+                         <div>
+                            <h3 class="text-2xl font-black text-white mb-4">Janeiro 2026</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="calendar-event-card"><div class="date bg-green-500 text-white">10</div><div class="details"><h3>Último Dia de Aulas</h3><p>Responsável: Todos</p></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </header>
-
-            <div class="flex flex-col md:flex-row">
-                
-                <aside class="w-full md:w-64 flex-shrink-0 bg-slate-50 border-b md:border-b-0 md:border-r border-slate-200">
-                    <nav class="p-3 md:p-4 space-y-2">
-                        <div>
-                            <button id="calendario-toggle" class="nav-item w-full justify-between">
-                                <span class="flex items-center gap-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>
-                                    <span>Calendário</span>
-                                </span>
-                                <svg class="toggle-icon-plus h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
-                                <svg class="toggle-icon-minus h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
-                            </button>
-                            <div id="calendario-submenu" class="submenu">
-                                <button class="sub-nav-item tab-button active" data-tab="calendario-2025-2">
-                                    <span>2025.2</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div>
-                            <button id="disciplinas-toggle" class="nav-item w-full justify-between">
-                                <span class="flex items-center gap-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 15c1.255 0 2.443-.29 3.5-.804V4.804zM14.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 0114.5 15c1.255 0 2.443-.29 3.5-.804v-10A7.968 7.968 0 0014.5 4z" /></svg>
-                                    <span>Disciplinas</span>
-                                </span>
-                                <svg class="toggle-icon-plus h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
-                                <svg class="toggle-icon-minus h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
-                            </button>
-                            <div id="disciplinas-submenu" class="submenu">
-                                <button class="sub-nav-item tab-button" data-tab="disciplinas-2025-2">
-                                    <span>2025.2</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div>
-                            <button id="sigaa-toggle" class="nav-item w-full justify-between">
-                                <span class="flex items-center gap-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v10H5V5zm2 2h2v2H7V7zm4 0h2v2h-2V7zm-4 4h2v2H7v-2zm4 0h2v2h-2v-2z" clip-rule="evenodd" /></svg>
-                                    <span>SIGAA</span>
-                                </span>
-                                <svg class="toggle-icon-plus h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" /></svg>
-                                <svg class="toggle-icon-minus h-4 w-4 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
-                            </button>
-                             <div id="sigaa-submenu" class="submenu">
-                                <button class="sub-nav-item tab-button" data-tab="acesso">
-                                    <span>Acesso</span>
-                                </button>
-                                <button class="sub-nav-item tab-button" data-tab="matricula">
-                                    <span>Matrícula</span>
-                                </button>
-                                <button class="sub-nav-item tab-button" data-tab="horarios">
-                                    <span>Horários</span>
-                                </button>
-                                <button class="sub-nav-item tab-button" data-tab="beneficios">
-                                    <span>Benefícios</span>
-                                </button>
-                            </div>
-                        </nav>
-                </aside>
-
-                <main class="flex-grow overflow-y-auto bg-slate-50">
-                    
-                    <div id="calendario-2025-2" class="tab-content active p-4 sm:p-6 md:p-10">
-                        <div class="mb-8">
-                            <div class="flex flex-col sm:flex-row gap-2">
-                                <input type="text" id="calendarSearchInput" placeholder="Buscar por evento, data, mês..." class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-violet-400 focus:border-violet-400 transition">
-                                <button id="calendarSearchButton" class="w-full sm:w-auto px-5 py-2 bg-violet-700 text-white font-semibold rounded-md hover:bg-violet-800 transition">Buscar</button>
-                            </div>
-                            <p id="calendarNoResultsMessage" class="text-slate-600 mt-3 hidden">Nenhum evento encontrado.</p>
-                        </div>
-                        <div class="space-y-10" id="calendar-events-container">
-                            <div>
-                                <h2 class="text-2xl font-bold text-purple-800 mb-6 border-b-2 border-purple-200 pb-2">AGOSTO</h2>
-                                <div class="space-y-8">
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">26 a 31</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Matrícula WEB</h3>
-                                            <p class="text-slate-600 mt-1">Período para solicitação de matrícula em componentes curriculares via internet.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
-                                                Responsável: Estudantes
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">30/08 a 30/10</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Colação de Grau (2025.1)</h3>
-                                            <p class="text-slate-600 mt-1">Período para a realização da colação de grau dos formandos do semestre 2025.1.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zM10 12a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg>
-                                                Responsável: Colegiado / Formandos
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h2 class="text-2xl font-bold text-purple-800 mb-6 border-b-2 border-purple-200 pb-2">SETEMBRO</h2>
-                                <div class="space-y-8">
-                                     <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">01 a 03</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">1º Ajuste de Matrícula</h3>
-                                            <p class="text-slate-600 mt-1">Ajuste de matrículas com foco nas incrições em componentes após a matrícula web.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
-                                                Responsável: Colegiados
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">01</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Início das Aulas</h3>
-                                            <p class="text-slate-600 mt-1">Começo oficial do semestre letivo de 2025.2.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
-                                                Responsável: Todos
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">01 a 05</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Congresso UFBA</h3>
-                                            <p class="text-slate-600 mt-1">Período de realização do congresso da universidade.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
-                                                Responsável: Todos
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">08</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Resultado da Matrícula WEB</h3>
-                                            <p class="text-slate-600 mt-1">Divulgação dos resultados da Matrícula WEB.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" /><path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" /><path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" /></svg>
-                                                Responsável: STI
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">11 a 16</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Re-Matrícula WEB</h3>
-                                            <p class="text-slate-600 mt-1">Ajuste de matrícula realizado pelo estudante.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
-                                                Responsável: Estudante
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">17 a 19</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">2º Ajuste de Matrícula</h3>
-                                            <p class="text-slate-600 mt-1">Ajustes de matrícula com foco nas incrições em componentes após Rematrícula web.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
-                                                Responsável: Colegiados
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">24</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Resultado da Re-Matrícula</h3>
-                                            <p class="text-slate-600 mt-1">Divulgação dos resultados da Re-Matrícula WEB.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" /><path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" /><path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" /></svg>
-                                                Responsável: STI
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">25 a 29</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Matrícula Extraordinária (último ajuste)</h3>
-                                            <p class="text-slate-600 mt-1">Matrícula para casos especiais e vagas remanescentes.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
-                                                Responsável: Estudante
-                                            </div>
-                                        </div>
-                                    </div>
-                                     <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">30/09 a 29/10</div>
-                                        <div class="event-card w-full">
-                                            <h3 class="font-semibold text-lg text-slate-800">Período de Trancamento de Matrícula</h3>
-                                            <p class="text-slate-600 mt-1">Prazo para solicitar o trancamento do semestre.</p>
-                                            <div class="responsible-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
-                                                Responsável: Estudante
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b-2 border-slate-200 pb-2">JANEIRO 2026</h2>
-                                <div class="timeline-item flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                    <div class="w-full sm:w-28 bg-purple-800 text-white py-2 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow">10</div>
-                                    <div class="event-card w-full">
-                                        <h3 class="font-semibold text-lg text-slate-800">Último Dia de Aulas</h3>
-                                        <p class="text-slate-600 mt-1">Encerramento do período letivo de 2025.2.</p>
-                                        <div class="responsible-tag">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" /></svg>
-                                                Responsável: Todos
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="disciplinas-2025-2" class="tab-content disciplinas-section p-4 sm:p-6 md:p-10">
-                        <div class="sticky top-0 z-10 bg-slate-50/95 backdrop-blur-sm py-4 -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 md:-mx-10 md:-mt-10 px-4 sm:px-6 md:px-10 border-b border-slate-200 mb-6">
-                           <div class="flex flex-col sm:flex-row gap-2">
-                                <input type="text" id="searchInput" placeholder="Buscar por disciplina, docente, código..." class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-violet-400 focus:border-violet-400 transition">
-                                <button id="searchButton" class="w-full sm:w-auto px-5 py-2 bg-slate-800 text-white font-semibold rounded-md hover:bg-slate-900 transition">Buscar</button>
-                            </div>
-                            <p id="noResultsMessage" class="text-slate-600 mt-3 hidden">Nenhum resultado encontrado.</p>
-                        </div>
-                        <div class="space-y-12">
-                            <section>
-                                <h3>2º Semestre</h3>
-                                <div class="space-y-8">
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Segunda-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE05 - Gênero e Linguagem</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE04 - Gênero e Relações de Poder</h4><p><strong>Docente:</strong> Ana Paula</p><p><strong>Pré-requisitos:</strong> FCHE38</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHF53 - Seminário Temático de Teorias Feministas</h4><p><strong>Docente:</strong> Marcia</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHE45 - Gênero e cultura</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Sexta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE39 - Organização Política do Brasil</h4><p><strong>Docente:</strong> Maise</p><p><strong>Pré-requisitos:</strong> FCHE38</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <h3>4º Semestre</h3>
-                                 <div class="space-y-8">
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Segunda-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHF47 - Gênero e Meio Ambiente (T01)</h4><p><strong>Docente:</strong> Marina</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHE22 - Gênero e Geração</h4><p><strong>Docente:</strong> Marcia</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHF54 - Seminário Temático Gênero, Feminismo e Educação</h4><p><strong>Docente:</strong> Darlane</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHE37 - Gênero e Relações Raciais</h4><p><strong>Docente:</strong> Janja</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE44 - Gênero e Violência (T01)</h4><p><strong>Docente:</strong> Ana Paula</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE41 - Gênero e Políticas Públicas I</h4><p><strong>Docente:</strong> Walkyria</p><p><strong>Pré-requisitos:</strong> FCHE38, FCHE39, FCHE04, FCHE43</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Sexta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE40 - Gênero e Desenvolvimento Regional</h4><p><strong>Docente:</strong> Luana</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <h3>6º Semestre</h3>
-                                 <div class="space-y-8">
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Segunda-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>GFCH0003 - Estágio Supervisionado I</h4><p><strong>Docente:</strong> Darlane</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 12</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>GFCH0004 - Estágio Supervisionado III (T02)</h4><p><strong>Docente:</strong> Marcia Macedo</p><p><strong>Pré-requisitos:</strong> GFCH0003, FCHE59</p><p><strong>Horário:</strong> 20h20-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 12</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>GFCH0004 - Estágio Supervisionado III (T01)</h4><p><strong>Docente:</strong> Darlane</p><p><strong>Pré-requisitos:</strong> GFCH0003, FCHE59</p><p><strong>Horário:</strong> 20h20-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 12</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE24 - Iniciação Cientifica aplicada II</h4><p><strong>Docente:</strong> Iole</p><p><strong>Pré-requisitos:</strong> FCHE23</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE25 - Gênero e Políticas Públicas III</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Pré-requisitos:</strong> FCHE38, FCHE39, FCHE04, FCHE43, FCHE41, FCHE42</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHE60 - Epistemologia, história das ciências e gênero</h4><p><strong>Docente:</strong> Maíra</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Sexta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHE19 - Gênero e Interseccionalidades</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> 18h30-20h20</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <h3>8º Semestre</h3>
-                                <div class="space-y-8">
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHF52 - Gênero e Comunicação</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHE36 - Pedagogias Feministas</h4><p><strong>Docente:</strong> Vanessa</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHE26 - Gênero e Trabalho</h4><p><strong>Docente:</strong> Luana</p><p><strong>Horário:</strong> 18h30-22h10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <h3>Disciplinas Ofertadas a Outras Graduações</h3>
-                                <div class="space-y-8">
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Segunda-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE02 - Introdução aos Estudos de Gênero (T01)</h4><p><strong>Docente:</strong> Amanda</p><p><strong>Horário:</strong> Segunda, 18:30-22:10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Terça-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHF47 - Gênero e Meio Ambiente (T02)</h4><p><strong>Docente:</strong> Marina</p><p><strong>Horário:</strong> Terça, 13:00-16:40</p><p><strong>PAF:</strong> PSL</p><p><strong>Sala:</strong> A definir</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                                <div class="disciplina-card disciplina-optativa"><h4>FCHE46 - Metodologia de Projetos de Intervenção Social</h4><p><strong>Docente:</strong> Walkyria</p><p><strong>Horário:</strong> Terça, 13:00-16:40</p><p><strong>PAF:</strong> PAF 1</p><p><strong>Sala:</strong> A definir</p><div class="status-tag tag-optativa">Optativa</div></div>
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE02 - Introdução aos Estudos de Gênero (T04)</h4><p><strong>Docente:</strong> Anderson</p><p><strong>Horário:</strong> Terça, 13:00-16:40</p><p><strong>PAF:</strong> PSL</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quarta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE02 - Introdução aos Estudos de Gênero (T02)</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> Quarta, 18:30-22:10</p><p><strong>PAF:</strong> FACOM</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                        <div class="w-full sm:w-36 bg-purple-800 text-white py-3 px-3 rounded-lg font-bold text-center flex-shrink-0 shadow flex items-center justify-center">Quinta-feira</div>
-                                        <div class="w-full">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE44 - Gênero e Violência (T02)</h4><p><strong>Docente:</strong> Karine (ADM)</p><p><strong>Horário:</strong> Quinta, manhã</p><p><strong>PAF:</strong> PSL</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                                <div class="disciplina-card disciplina-obrigatoria"><h4>FCHE02 - Introdução aos Estudos de Gênero (T03)</h4><p><strong>Docente:</strong> Lea</p><p><strong>Horário:</strong> Quinta, 13:00-16:40</p><p><strong>PAF:</strong> PSL</p><p><strong>Sala:</strong> A definir</p><p><strong>Vagas:</strong> 50</p><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                             <section>
-                                <h3>Monografia I</h3>
-                                 <p class="text-slate-600 mb-4">Horário a combinar diretamente com os orientadores.</p>
-                                 <p class="text-slate-600 font-medium -mt-3 mb-4"><strong>Pré-requisitos (FCHE31):</strong> FCHE23, FCHE24</p>
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Ana Paula Boscatti</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientador: Anderson Fontes</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Luana Passos</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Darlane S. V. Andrade</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Iole Macedo Vanin</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Maise Caroline Zucco</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Maíra Kubik T. Mano</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Márcia dos Santos Macedo</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Marina Guimarães</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Rosangela Janja C. Araujo</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                </div>
-                            </section>
-                            <section class="pb-8">
-                                <h3>Monografia II</h3>
-                                 <p class="text-slate-600 mb-4">Horário a combinar diretamente com os orientadores.</p>
-                                 <p class="text-slate-600 font-medium -mt-3 mb-4"><strong>Pré-requisitos (FCHE32):</strong> FCHE23, FCHE24, FCHE31</p>
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Ana Paula Boscatti</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientador: Anderson Fontes</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Luana Passos</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Darlane S. V. Andrade</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Iole Macedo Vanin</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Maise Caroline Zucco</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Maíra Kubik T. Mano</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Márcia dos Santos Macedo</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Marina Guimarães</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                    <div class="disciplina-card disciplina-obrigatoria"><h4>Orientadora: Rosangela Janja C. Araujo</h4><div class="status-tag tag-obrigatoria">Obrigatória</div></div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-
-                    <div id="acesso" class="tab-content info-section p-4 sm:p-6 md:p-10">
-                        <div class="space-y-8">
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">📢 Atenção</div>
-                                <div class="info-card w-full">
-                                    <h4>Matrícula 2025.2</h4>
-                                    <p>A matrícula para o semestre 2025.2 será 100% online através do novo SIGAA.</p>
-                                    <p><strong>Período:</strong> 26 a 31 de agosto de 2025</p>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Como Acessar</div>
-                                <div class="info-card w-full">
-                                    <p><strong>Link Acesso:</strong> <a href="https://sigaa.ufba.br/sigaa" target="_blank" class="text-purple-700 hover:underline">https://sigaa.ufba.br/sigaa</a></p>
-                                    <ul class="list-disc mt-2">
-                                        <li><strong>Login:</strong> Seu número de CPF.</li>
-                                        <li><strong>Senha:</strong> Será enviada para seu e-mail cadastrado na UFBA até 22 de agosto.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Solução de Problemas</div>
-                                <div class="info-card w-full">
-                                    <p class="mt-0"><strong>Não recebeu a senha?</strong><br>
-                                    Entre no <a href="https://sigaa.ufba.br/sigaa" target="_blank" class="text-purple-700 hover:underline">SIGAA</a> e clique em "Recuperar Senha".</p>
-                                    <p class="mt-4"><strong>Não lembra do seu e-mail?</strong><br>
-                                    Acesse <a href="http://www.autenticacao.ufba.br" target="_blank" class="text-purple-700 hover:underline">www.autenticacao.ufba.br</a> e clique em "Esqueci meu login ou senha".</p>
-                                    <p class="mt-4"><strong>Quer atualizar seu e-mail?</strong><br>
-                                    Preencha o <a href="https://forms.gle/XxBRwVUd95t6t33u9" target="_blank" class="text-purple-700 hover:underline">Formulário de Atualização</a>.</p>
-                                </div>
-                            </div>
-                             <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Suporte Técnico</div>
-                                <div class="info-card w-full">
-                                    <p><strong>Problemas técnicos com o SIGAA:</strong><br><a href="mailto:helpdesk@ufba.br" class="text-purple-700 hover:underline">helpdesk@ufba.br</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="matricula" class="tab-content info-section p-4 sm:p-6 md:p-10">
-                        <h3 class="!mb-8">Matrícula 2025.2 via SIGAA</h3>
-                         <div class="space-y-8">
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">📌 100% Web</div>
-                                <div class="info-card w-full">
-                                    <p>Todo o processo é feito pelo novo sistema SIGAA.</p>
-                                    <p class="mt-2">🚫 Sem acesso pelo SIACWEB</p>
-                                    <p>🚫 Sem matrícula ou ajuste presencial</p>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">1. Vantagens</div>
-                                <div class="info-card w-full">
-                                    <ul>
-                                        <li>Matrícula e ajustes 100% online</li>
-                                        <li>Mais autonomia para o estudante</li>
-                                        <li>Fim das filas e da “corrida” pela matrícula</li>
-                                        <li>Mesmas chances de vaga, não importa a hora da solicitação</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">2. Critérios de Prioridade</div>
-                                <div class="info-card w-full">
-                                    <ol class="list-decimal !mt-0">
-                                        <li><strong>Estudantes Regulares (Semestralizados)</strong></li>
-                                        <li><strong>Formandos</strong></li>
-                                        <li><strong>Recuperação</strong> (reprovados ou trancados)</li>
-                                        <li><strong>Adiantamento</strong> de disciplinas</li>
-                                        <li><strong>Desempate:</strong> Coeficiente de Rendimento (CR)</li>
-                                    </ol>
-                                    <div class="highlight"><p>💡 <strong>Dica de Ouro:</strong> Faça todas as suas solicitações na Matrícula WEB (1ª etapa). Vagas remanescentes serão liberadas para outros cursos na 2ª etapa.</p></div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">3. Flexibilização de Pré-requisito</div>
-                                <div class="info-card w-full">
-                                    <p>A solicitação é feita no SIGAA durante a matrícula.</p>
-                                    <p class="mt-2"><strong>Permitida quando:</strong></p>
-                                    <ul class="!mt-2"><li>Já cursou o pré-requisito e foi reprovado (nota ≠ 0).</li><li>Está matriculado no pré-requisito no mesmo semestre.</li></ul>
-                                </div>
-                            </div>
-                             <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">4. Pontos de Atenção</div>
-                                <div class="info-card w-full">
-                                    <p><strong>Limite de Carga Horária:</strong></p>
-                                    <ul class="!mt-2"><li>1ª Etapa (Matrícula Web) – até 450 horas.</li><li>2ª Etapa (Rematrícula) – até 540 horas.</li></ul>
-                                    <p class="mt-4"><strong>Falta de Lançamento de Notas:</strong></p>
-                                    <p class="!mt-2">A falta de nota do semestre anterior pode impedir a matrícula em componentes sequenciais ou a quebra de pré-requisito.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="horarios" class="tab-content info-section p-4 sm:p-6 md:p-10">
-                        <h3 class="!mb-8">Entendendo os Horários no SIGAA</h3>
-                        <div class="space-y-8">
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Codificação</div>
-                                <div class="info-card w-full">
-                                    <p>O SIGAA usa um código para os horários no formato: <strong>[Dia][Turno][Horários]</strong>.</p>
-                                    <div class="highlight text-center"><p class="text-lg">Exemplo: <strong>3T1234</strong></p><p class="text-gray-600">Terça-feira (3), turno da Tarde (T), do 1º ao 4º horário.</p></div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Legenda</div>
-                                <div class="info-card w-full">
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                                        <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Dia da Semana</h4><p>2 = Segunda</p><p>3 = Terça</p><p>4 = Quarta</p><p>5 = Quinta</p><p>6 = Sexta</p><p>7 = Sábado</p></div>
-                                        <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Turno</h4><p>M = Manhã</p><p>T = Tarde</p><p>N = Noite</p></div>
-                                        <div><h4 class="!font-bold text-gray-700 !mb-2 !text-center !border-none">Horários</h4><p>1 = 1º Horário</p><p>2 = 2º Horário</p><p>3 = 3º Horário</p><p>...</p></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     
-                    <div id="beneficios" class="tab-content info-section p-4 sm:p-6 md:p-10">
-                        <h3 class="!mb-8">Benefícios do Novo Sistema SIGAA</h3>
-                        <div class="space-y-8">
-                            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                                <div class="w-full sm:w-48 flex-shrink-0 bg-purple-800 text-white p-3 rounded-lg font-bold text-center shadow flex items-center justify-center">Vantagens</div>
-                                <div class="info-card w-full">
-                                    <p>A implantação do SIGAA traz melhorias para a vida acadêmica:</p>
-                                    <ul class="list-disc mt-4 space-y-3">
-                                        <li><strong>Diploma Digital:</strong> Emissão rápida e segura de diplomas.</li>
-                                        <li><strong>Histórico Acadêmico em Tempo Real:</strong> Consulte seu progresso e pendências instantaneamente.</li>
-                                        <li><strong>Atividades Complementares:</strong> Solicite o aproveitamento diretamente pelo portal, sem burocracia.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
             </div>
 
-            <footer class="bg-gray-100 p-2 text-center flex-shrink-0">
-                <p class="text-xs text-gray-500 mb-1">
-                    Calendário e oferta de disciplinas organizados com base nos documentos oficiais da SUPAC e do Colegiado. As informações podem estar sujeitas a alterações.
-                </p>
-                <p class="text-xs text-gray-600 font-medium">
-                    Contato: generoediversidade@ufba.br | Tel: (71) 3283-6463
-                </p>
-            </footer>
+            <div id="disciplinas" class="tab-content">
+                 <div class="kahoot-card" style="background-color: #0096c7;">
+                    <h2 class="text-4xl font-black text-white mb-6">📚 Disciplinas Ofertadas 2025.2</h2>
+                    <div id="disciplinas-accordion-container" class="space-y-2">
+                        <!-- Accordion items will be injected here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="sigaa" class="tab-content">
+                <div class="kahoot-card" style="background-color: #6a00f4;">
+                    <h2 class="text-4xl font-black text-white mb-6">🎓 TUDO SOBRE O SIGAA</h2>
+                    <div id="sigaa-accordion-container" class="space-y-2">
+                        <!-- SIGAA Accordion items will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="quiz" class="tab-content">
+                <div id="quiz-intro" class="text-center">
+                    <h2 class="text-5xl font-black mb-4">🚀 Quiz</h2>
+                    <p class="text-xl mb-8">Teste seus conhecimentos sobre a matrícula e o SIGAA!</p>
+                    <button id="start-quiz-btn" class="bg-green-500 text-white font-bold text-2xl py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition">Começar o Desafio!</button>
+                </div>
+
+                <div id="quiz-container" style="display: none;">
+                    <div class="flex justify-between items-center mb-4 text-lg font-bold">
+                        <div id="running-score">Pontos: 0</div>
+                        <div id="question-counter"></div>
+                    </div>
+                    <div id="quiz-timer" class="text-white">30</div>
+                    <div id="quiz-question" class="bg-white text-gray-800"></div>
+                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="quiz-option" data-index="0"><span></span></div>
+                        <div class="quiz-option" data-index="1"><span></span></div>
+                        <div class="quiz-option" data-index="2"><span></span></div>
+                        <div class="quiz-option" data-index="3"><span></span></div>
+                    </div>
+                </div>
+
+                <div id="results-screen" style="display: none;">
+                     <div id="results-card" class="kahoot-card text-white">
+                        <h2 class="text-5xl font-black mb-4">Fim de Jogo!</h2>
+                        <p class="text-2xl mb-2">Sua pontuação final foi:</p>
+                        <p id="final-score" class="text-6xl font-black text-yellow-400 my-8"></p>
+                        <p id="results-message" class="text-2xl font-bold mb-8"></p>
+                        <button id="restart-quiz-btn" class="bg-blue-500 text-white font-bold text-2xl py-4 px-8 rounded-lg shadow-lg transform hover:scale-105 transition">Jogar Novamente</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="text-center p-4 bg-gray-900 rounded-b-lg text-sm">
+            <p class="italic">*Informações sujeitas a alterações*.</p>
+            <p class="mt-1"><strong>Contato:</strong> generoediversidade@ufba.br | <strong>Tel:</strong> (71) 3283-6463</p>
+        </footer>
+    </div>
+
+    <div id="feedback-modal">
+        <div id="feedback-content">
+            <p id="feedback-title"></p>
+            <p id="feedback-text" class="text-lg mt-2 font-normal"></p>
+            <div id="feedback-points"></div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-            const menuToggles = document.querySelectorAll('.nav-item[id$="-toggle"]');
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-            function closeAllSubmenus() {
-                document.querySelectorAll('.submenu').forEach(submenu => {
-                    submenu.style.maxHeight = null;
-                });
-                document.querySelectorAll('.nav-item[id$="-toggle"]').forEach(toggle => {
-                    toggle.classList.remove('active');
-                    toggle.querySelector('.toggle-icon-plus').classList.remove('hidden');
-                    toggle.querySelector('.toggle-icon-minus').classList.add('hidden');
-                });
-            }
-
-            function openSubmenu(toggle) {
-                const submenu = toggle.nextElementSibling;
-                if (submenu) {
-                    submenu.style.maxHeight = submenu.scrollHeight + "px";
-                    toggle.classList.add('active');
-                    toggle.querySelector('.toggle-icon-plus').classList.add('hidden');
-                    toggle.querySelector('.toggle-icon-minus').classList.remove('hidden');
-                }
-            }
-
-            menuToggles.forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const submenu = toggle.nextElementSibling;
-                    const isSubmenuOpen = submenu && submenu.style.maxHeight;
-
-                    closeAllSubmenus();
-
-                    if (!isSubmenuOpen) {
-                        openSubmenu(toggle);
-                    }
-                });
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+                tabContents.forEach(content => content.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
             });
+        });
 
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.dataset.tab;
-
-                    document.querySelectorAll('.nav-item, .sub-nav-item').forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-
-                    button.classList.add('active');
-                    const activeContent = document.getElementById(tabId);
-                    if (activeContent) {
-                        activeContent.classList.add('active');
-                    }
-                    
-                    const parentMenu = button.closest('.submenu');
-                    if (parentMenu) {
-                        const parentToggle = parentMenu.previousElementSibling;
-                        openSubmenu(parentToggle);
-                        parentToggle.classList.add('active'); 
-                    } else {
-                        const associatedSubmenu = button.nextElementSibling;
-                        if (associatedSubmenu && associatedSubmenu.classList.contains('submenu')) {
-                           openSubmenu(button);
-                        }
-                    }
-                });
-            });
-
-            const calendarioToggle = document.getElementById('calendario-toggle');
-            if (calendarioToggle) {
-                openSubmenu(calendarioToggle);
+        // --- INJECT DISCIPLINAS DATA ---
+        const disciplinasData = {
+            "2º Semestre": {
+                color: "bg-red-500",
+                data: [
+                    { dia: "Segunda-feira", d: [{cod: "FCHE05", nome: "Gênero e Linguagem", prof: "Lea", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Obrigatória"}] },
+                    { dia: "Terça-feira", d: [{cod: "FCHE04", nome: "Gênero e Relações de Poder", prof: "Ana Paula", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, pre: "FCHE38", tipo: "Obrigatória"}] },
+                    { dia: "Quarta-feira", d: [{cod: "FCHF53", nome: "Seminário Temático de Teorias Feministas", prof: "Marcia", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                    { dia: "Quinta-feira", d: [{cod: "FCHE45", nome: "Gênero e cultura", prof: "Amanda", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                    { dia: "Sexta-feira", d: [{cod: "FCHE39", nome: "Organização Política do Brasil", prof: "Maise", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, pre: "FCHE38", tipo: "Obrigatória"}] },
+                ]
+            },
+            "4º Semestre": {
+                color: "bg-blue-500",
+                data: [
+                    { dia: "Segunda-feira", d: [{cod: "FCHF47", nome: "Gênero e Meio Ambiente (T01)", prof: "Marina", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                    { dia: "Terça-feira", d: [{cod: "FCHE22", nome: "Gênero e Geração", prof: "Marcia", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}, {cod: "FCHF54", nome: "Seminário Temático Gênero, Feminismo e Educação", prof: "Darlane", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}, {cod: "FCHE37", nome: "Gênero e Relações Raciais", prof: "Janja", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                    { dia: "Quarta-feira", d: [{cod: "FCHE44", nome: "Gênero e Violência (T01)", prof: "Ana Paula", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Obrigatória"}] },
+                    { dia: "Quinta-feira", d: [{cod: "FCHE41", nome: "Gênero e Políticas Públicas I", prof: "Walkyria", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, pre: "FCHE38, FCHE39, FCHE04, FCHE43", tipo: "Obrigatória"}] },
+                    { dia: "Sexta-feira", d: [{cod: "FCHE40", nome: "Gênero e Desenvolvimento Regional", prof: "Luana", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Obrigatória"}] },
+                ]
+            },
+            "6º Semestre": {
+                color: "bg-yellow-500",
+                data: [
+                    { dia: "Segunda-feira", d: [{cod: "GFCH0003", nome: "Estágio Supervisionado I", prof: "Darlane", horario: "18h30-20h20", paf: "FACOM", sala: "A definir", vagas: 12, tipo: "Obrigatória"}, {cod: "GFCH0004", nome: "Estágio Supervisionado III (T02)", prof: "Marcia Macedo", horario: "20h20-22h10", paf: "FACOM", sala: "A definir", vagas: 12, pre: "GFCH0003, FCHE59", tipo: "Obrigatória"}, {cod: "GFCH0004", nome: "Estágio Supervisionado III (T01)", prof: "Darlane", horario: "20h20-22h10", paf: "FACOM", sala: "A definir", vagas: 12, pre: "GFCH0003, FCHE59", tipo: "Obrigatória"}] },
+                    { dia: "Terça-feira", d: [{cod: "FCHE24", nome: "Iniciação Cientifica aplicada II", prof: "Iole", horario: "18h30-20h20", paf: "FACOM", sala: "A definir", vagas: 50, pre: "FCHE23", tipo: "Obrigatória"}] },
+                    { dia: "Quarta-feira", d: [{cod: "FCHE25", nome: "Gênero e Políticas Públicas III", prof: "Amanda", horario: "18h30-20h20", paf: "FACOM", sala: "A definir", vagas: 50, pre: "FCHE38, FCHE39, FCHE04, FCHE43, FCHE41, FCHE42", tipo: "Obrigatória"}] },
+                    { dia: "Quinta-feira", d: [{cod: "FCHE60", nome: "Epistemologia, história das ciências e gênero", prof: "Maíra", horario: "18h30-20h20", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                    { dia: "Sexta-feira", d: [{cod: "FCHE19", nome: "Gênero e Interseccionalidades", prof: "Amanda", horario: "18h30-20h20", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                ]
+            },
+            "8º Semestre": {
+                color: "bg-green-500",
+                data: [
+                    { dia: "Terça-feira", d: [{cod: "FCHF52", nome: "Gênero e Comunicação", prof: "Lea", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                    { dia: "Quarta-feira", d: [{cod: "FCHE36", nome: "Pedagogias Feministas", prof: "Vanessa", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                    { dia: "Quinta-feira", d: [{cod: "FCHE26", nome: "Gênero e Trabalho", prof: "Luana", horario: "18h30-22h10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Optativa"}] },
+                ]
+            },
+            "Disciplinas para Outras Graduações": {
+                color: "bg-purple-600",
+                data: [
+                    { dia: "Segunda-feira", d: [{cod: "FCHE02", nome: "Introdução aos Estudos de Gênero (T01)", prof: "Amanda", horario: "18:30-22:10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Obrigatória"}] },
+                    { dia: "Terça-feira", d: [{cod: "FCHF47", nome: "Gênero e Meio Ambiente (T02)", prof: "Marina", horario: "13:00-16:40", paf: "PSL", sala: "A definir", vagas: 50, tipo: "Optativa"}, {cod: "FCHE46", nome: "Metodologia de Projetos de Intervenção Social", prof: "Walkyria", horario: "13:00-16:40", paf: "PAF 1", sala: "A definir", vagas: 50, tipo: "Optativa"}, {cod: "FCHE02", nome: "Introdução aos Estudos de Gênero (T04)", prof: "Anderson", horario: "13:00-16:40", paf: "PSL", sala: "A definir", vagas: 50, tipo: "Obrigatória"}] },
+                    { dia: "Quarta-feira", d: [{cod: "FCHE02", nome: "Introdução aos Estudos de Gênero (T02)", prof: "Lea", horario: "18:30-22:10", paf: "FACOM", sala: "A definir", vagas: 50, tipo: "Obrigatória"}] },
+                    { dia: "Quinta-feira", d: [{cod: "FCHE44", nome: "Gênero e Violência (T02)", prof: "Karine (ADM)", horario: "Manhã", paf: "PSL", sala: "A definir", vagas: 50, tipo: "Obrigatória"}, {cod: "FCHE02", nome: "Introdução aos Estudos de Gênero (T03)", prof: "Lea", horario: "13:00-16:40", paf: "PSL", sala: "A definir", vagas: 50, tipo: "Obrigatória"}] },
+                ]
+            },
+            "Monografia I & II": {
+                color: "bg-pink-600",
+                data: [
+                    { dia: "Monografia I (FCHE31)", d: [{nome: "Orientadores", prof: "Ana Paula, Anderson, Luana, Darlane, Iole, Maise, Maíra, Márcia, Marina, Janja", horario: "A combinar", pre: "FCHE23, FCHE24", tipo: "Obrigatória"}] },
+                    { dia: "Monografia II (FCHE32)", d: [{nome: "Orientadores", prof: "Ana Paula, Anderson, Luana, Darlane, Iole, Maise, Maíra, Márcia, Marina, Janja", horario: "A combinar", pre: "FCHE23, FCHE24, FCHE31", tipo: "Obrigatória"}] },
+                ]
             }
+        };
 
-            // --- Lógica da Busca Disciplinas ---
-            const searchInput = document.getElementById('searchInput');
-            const searchButton = document.getElementById('searchButton');
-            const noResultsMessage = document.getElementById('noResultsMessage');
-            const disciplinaCards = document.querySelectorAll('#disciplinas-2025-2 .disciplina-card');
-
-            function performSearch() {
-                const searchTerm = searchInput.value.toLowerCase().trim();
-                
-                if (!searchTerm) {
-                    resetSearch();
-                    return;
-                }
-
-                let firstMatch = null;
-                let foundMatch = false;
-
-                disciplinaCards.forEach(card => {
-                    const cardText = card.innerText.toLowerCase();
-                    if (cardText.includes(searchTerm)) {
-                        card.classList.remove('search-dim');
-                        card.classList.add('search-highlight');
-                        if (!firstMatch) {
-                            firstMatch = card;
-                        }
-                        foundMatch = true;
-                    } else {
-                        card.classList.remove('search-highlight');
-                        card.classList.add('search-dim');
-                    }
-                });
-
-                if (foundMatch) {
-                    noResultsMessage.classList.add('hidden');
-                    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                    noResultsMessage.classList.remove('hidden');
-                    resetSearch(false);
-                }
-            }
+        const accordionContainer = document.getElementById('disciplinas-accordion-container');
+        Object.keys(disciplinasData).forEach(key => {
+            const item = disciplinasData[key];
+            const accordionItem = document.createElement('div');
             
-            function resetSearch(clearHighlights = true) {
-                 disciplinaCards.forEach(card => {
-                    card.classList.remove('search-dim');
-                    if(clearHighlights) {
-                       card.classList.remove('search-highlight');
-                    }
+            const button = document.createElement('button');
+            button.className = `disciplina-accordion-btn ${item.color}`;
+            button.textContent = key;
+            
+            const content = document.createElement('div');
+            content.className = 'disciplina-accordion-content';
+
+            let contentHtml = '<div class="py-4 space-y-6">';
+            item.data.forEach(diaInfo => {
+                contentHtml += `<h4 class="text-2xl font-bold text-white">${diaInfo.dia}</h4>`;
+                contentHtml += '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">';
+                diaInfo.d.forEach(disciplina => {
+                    const tipoClass = disciplina.tipo === 'Obrigatória' ? 'bg-red-500 text-white' : 'bg-purple-500 text-white';
+                    contentHtml += `
+                        <div class="disciplina-card p-4 rounded bg-white text-gray-800">
+                            <h4 class="font-black text-lg">${disciplina.cod ? disciplina.cod + ' - ' : ''}${disciplina.nome}</h4>
+                            <p><strong>Docente:</strong> ${disciplina.prof}</p>
+                            <p><strong>Horário:</strong> ${disciplina.horario}</p>
+                            ${disciplina.paf ? `<p><strong>Local:</strong> ${disciplina.paf}, Sala ${disciplina.sala}</p>` : ''}
+                            ${disciplina.vagas ? `<p><strong>Vagas:</strong> ${disciplina.vagas}</p>` : ''}
+                            ${disciplina.pre ? `<p><strong>Pré-requisitos:</strong> ${disciplina.pre}</p>` : ''}
+                            <span class="tag ${tipoClass} mt-2">${disciplina.tipo}</span>
+                        </div>
+                    `;
                 });
-                if(clearHighlights) {
-                    noResultsMessage.classList.add('hidden');
-                }
-            }
-
-            searchButton.addEventListener('click', performSearch);
-            searchInput.addEventListener('keyup', (event) => {
-                if (event.key === 'Enter') {
-                    performSearch();
-                }
+                contentHtml += '</div>';
             });
-            searchInput.addEventListener('input', () => {
-                if (searchInput.value === '') {
-                    resetSearch();
-                }
-            });
+            contentHtml += '</div>';
+            content.innerHTML = contentHtml;
 
-            // --- Lógica da Busca Calendário ---
-            const calendarSearchInput = document.getElementById('calendarSearchInput');
-            const calendarSearchButton = document.getElementById('calendarSearchButton');
-            const calendarNoResultsMessage = document.getElementById('calendarNoResultsMessage');
-            const calendarItems = document.querySelectorAll('#calendario-2025-2 .timeline-item');
+            accordionItem.appendChild(button);
+            accordionItem.appendChild(content);
+            accordionContainer.appendChild(accordionItem);
 
-            function performCalendarSearch() {
-                const searchTerm = calendarSearchInput.value.toLowerCase().trim();
-
-                if (!searchTerm) {
-                    resetCalendarSearch();
-                    return;
-                }
-
-                let firstMatch = null;
-                let foundMatch = false;
-
-                calendarItems.forEach(item => {
-                    const itemText = item.innerText.toLowerCase();
-                    if (itemText.includes(searchTerm)) {
-                        item.classList.remove('search-dim');
-                        item.classList.add('search-highlight');
-                         if (!firstMatch) {
-                            firstMatch = item;
-                        }
-                        foundMatch = true;
-                    } else {
-                        item.classList.remove('search-highlight');
-                        item.classList.add('search-dim');
-                    }
-                });
-                
-                if (foundMatch) {
-                    calendarNoResultsMessage.classList.add('hidden');
-                    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                    calendarNoResultsMessage.classList.remove('hidden');
-                    resetCalendarSearch(false);
-                }
-            }
-
-            function resetCalendarSearch(clearHighlights = true) {
-                calendarItems.forEach(item => {
-                    item.classList.remove('search-dim');
-                     if(clearHighlights) {
-                       item.classList.remove('search-highlight');
-                    }
-                });
-                 if(clearHighlights) {
-                    calendarNoResultsMessage.classList.add('hidden');
-                }
-            }
-
-            calendarSearchButton.addEventListener('click', performCalendarSearch);
-            calendarSearchInput.addEventListener('keyup', (event) => {
-                if (event.key === 'Enter') {
-                    performCalendarSearch();
-                }
-            });
-             calendarSearchInput.addEventListener('input', () => {
-                if (calendarSearchInput.value === '') {
-                    resetCalendarSearch();
+            button.addEventListener('click', () => {
+                const isOpen = content.style.maxHeight;
+                document.querySelectorAll('.disciplina-accordion-content').forEach(c => c.style.maxHeight = null);
+                if (!isOpen) {
+                    content.style.maxHeight = content.scrollHeight + "px";
                 }
             });
         });
-    </script>
 
+        // --- SIGAA ACCORDION ---
+        const sigaaAccordionContainer = document.getElementById('sigaa-accordion-container');
+        const sigaaData = [
+            { title: "Acesso", color: "bg-red-500", icon: "🔑", content: `...` },
+            { title: "Matrícula", color: "bg-blue-500", icon: "📝", content: `...` },
+            { title: "Horários", color: "bg-yellow-500", icon: "⏰", content: `...` },
+            { title: "Benefícios", color: "bg-green-500", icon: "⭐", content: `...` }
+        ];
+        
+        const sigaaContentHtml = {
+            Acesso: `
+                <div class="p-4 text-white space-y-4">
+                    <div class="bg-red-700 p-4 rounded-lg"><h4 class="font-bold text-lg">Como Acessar</h4><p><strong>Link:</strong> <a href="https://sigaa.ufba.br/sigaa/" target="_blank" class="underline font-bold">sigaa.ufba.br/sigaa</a></p><ul class="list-disc list-inside ml-4"><li><strong>Login:</strong> Seu número de CPF.</li><li><strong>Senha:</strong> Será enviada para seu e-mail cadastrado na UFBA até 22 de agosto.</li></ul></div>
+                    <div class="bg-red-700 p-4 rounded-lg"><h4 class="font-bold text-lg pt-2">Solução de Problemas</h4><p>1 - <strong>Não recebeu a senha?</strong> Entre no <a href="https://sigaa.ufba.br/sigaa/" target="_blank" class="underline font-bold">SIGAA</a> e clique em "Recuperar Senha".</p><p>2 - <strong>Não lembra do seu e-mail?</strong> Acesse <a href="http://www.autenticacao.ufba.br" target="_blank" class="underline font-bold">autenticacao.ufba.br</a> e clique em "Esqueci meu login ou senha".</p><p>3 - <strong>Quer atualizar seu e-mail?</strong> Preencha o <a href="https://forms.gle/iZbREnXATexdvbcLA" target="_blank" class="underline font-bold">Formulário de Atualização</a>.</p></div>
+                    <div class="bg-red-700 p-4 rounded-lg"><h4 class="font-bold text-lg pt-2">Suporte Técnico</h4><p>Problemas técnicos com o SIGAA: <strong>helpdesk@ufba.br</strong></p></div>
+                </div>`,
+            Matrícula: `
+                <div class="p-4 text-white space-y-4">
+                    <div class="bg-blue-700 p-4 rounded-lg"><h4 class="font-bold text-lg">1. Vantagens</h4><ul class="list-disc list-inside space-y-1 mt-2"><li>Matrícula e ajustes 100% online</li><li>Mais autonomia para o estudante</li><li>Fim das filas e da “corrida” pela matrícula</li><li>Mesmas chances de vaga, não importa a hora da solicitação</li></ul></div>
+                    <div class="bg-blue-700 p-4 rounded-lg"><h4 class="font-bold text-lg pt-2">2. Critérios de Prioridade</h4><ol class="list-decimal list-inside space-y-1 mt-2"><li>Estudantes Regulares (Semestralizados)</li><li>Formandos</li><li>Recuperação (reprovados ou trancados)</li><li>Adiantamento de disciplinas</li><li>Desempate: Coeficiente de Rendimento (CR)</li></ol><p class="mt-4">💡 <strong>Dica de Ouro:</strong> Faça todas as suas solicitações na Matrícula WEB (1ª etapa). Vagas remanescentes serão liberadas para outros cursos na 2ª etapa.</p></div>
+                    <div class="bg-blue-700 p-4 rounded-lg"><h4 class="font-bold text-lg pt-2">3. Flexibilização de Pré-requisito</h4><p>A solicitação é feita no SIGAA durante a matrícula.</p><p><strong>Permitida quando:</strong></p><ul class="list-disc list-inside"><li>Já cursou o pré-requisito e foi reprovado (nota ≠ 0).</li><li>Está matriculado no pré-requisito no mesmo semestre.</li></ul></div>
+                    <div class="bg-blue-700 p-4 rounded-lg"><h4 class="font-bold text-lg pt-2">4. Pontos de Atenção</h4><p><strong>Limite de Carga Horária:</strong> 1ª Etapa (Matrícula Web) – até 450 horas. 2ª Etapa (Rematrícula) – até 540 horas.</p><p><strong>Falta de Lançamento de Notas:</strong> A falta de nota do semestre anterior pode impedir a matrícula em componentes sequenciais ou a quebra de pré-requisito.</p></div>
+                </div>`,
+            Horários: `
+                <div class="p-4 text-white space-y-4">
+                    <div class="bg-yellow-400 p-4 rounded-lg text-gray-800"><h4 class="font-bold text-lg">Codificação</h4><p>O SIGAA usa um código para os horários no formato: <strong>[Dia][Turno][Horários]</strong>.</p><p class="mt-2"><strong>Exemplo: 3T1234</strong> significa Terça-feira (3), turno da Tarde (T), do 1º ao 4º horário.</p></div>
+                    <div class="bg-yellow-400 p-4 rounded-lg text-gray-800 grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2">
+                        <div><h5 class="font-black">Dia da Semana</h5><ul class="list-disc list-inside text-sm"><li>2 = Segunda</li><li>3 = Terça</li><li>4 = Quarta</li><li>5 = Quinta</li><li>6 = Sexta</li><li>7 = Sábado</li></ul></div>
+                        <div><h5 class="font-black">Turno</h5><ul class="list-disc list-inside text-sm"><li>M = Manhã</li><li>T = Tarde</li><li>N = Noite</li></ul></div>
+                        <div><h5 class="font-black">Horários</h5><ul class="list-disc list-inside text-sm"><li>1 = 1º Horário</li><li>2 = 2º Horário</li><li>...e assim por diante</li></ul></div>
+                    </div>
+                </div>`,
+            Benefícios: `
+                <div class="p-4 text-white space-y-4">
+                    <div class="bg-green-700 p-4 rounded-lg"><h4 class="font-bold text-lg">Vantagens do SIGAA</h4><ul class="list-disc list-inside"><li><strong>Diploma Digital:</strong> Emissão rápida e segura.</li><li><strong>Histórico em Tempo Real:</strong> Consulte seu progresso a qualquer momento.</li><li><strong>Atividades Complementares:</strong> Solicite online, sem burocracia.</li></ul></div>
+                </div>`
+        };
+
+        sigaaData.forEach(item => {
+            const accordionItem = document.createElement('div');
+            
+            const button = document.createElement('button');
+            button.className = `sigaa-accordion-btn ${item.color}`;
+            button.innerHTML = `<span>${item.icon}</span> ${item.title}`;
+            
+            const content = document.createElement('div');
+            content.className = 'sigaa-accordion-content';
+            content.innerHTML = sigaaContentHtml[item.title];
+
+            accordionItem.appendChild(button);
+            accordionItem.appendChild(content);
+            sigaaAccordionContainer.appendChild(accordionItem);
+
+            button.addEventListener('click', () => {
+                const isOpen = content.style.maxHeight;
+                document.querySelectorAll('.sigaa-accordion-content').forEach(c => c.style.maxHeight = null);
+                if (!isOpen) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+
+        // --- QUIZ LOGIC ---
+        const quizIntro = document.getElementById('quiz-intro');
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        const quizContainer = document.getElementById('quiz-container');
+        const resultsScreen = document.getElementById('results-screen');
+        const finalScoreEl = document.getElementById('final-score');
+        const restartQuizBtn = document.getElementById('restart-quiz-btn');
+        
+        const questionEl = document.getElementById('quiz-question');
+        const optionsEl = document.querySelectorAll('.quiz-option');
+        const timerEl = document.getElementById('quiz-timer');
+        const questionCounterEl = document.getElementById('question-counter');
+        const runningScoreEl = document.getElementById('running-score');
+
+        const feedbackModal = document.getElementById('feedback-modal');
+        const feedbackContent = document.getElementById('feedback-content');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackText = document.getElementById('feedback-text');
+        const feedbackPoints = document.getElementById('feedback-points');
+        const resultsMessageEl = document.getElementById('results-message');
+
+        let correctSound, incorrectSound;
+
+        function setupSounds() {
+            if (!correctSound) {
+                 correctSound = new Tone.Synth({ oscillator: { type: 'sine' }, envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 } }).toDestination();
+            }
+             if (!incorrectSound) {
+                incorrectSound = new Tone.Synth({ oscillator: { type: 'triangle' }, envelope: { attack: 0.005, decay: 0.2, sustain: 0, release: 1 } }).toDestination();
+            }
+        }
+
+        const quizData = [
+            { question: "Qual o período da Matrícula WEB para o semestre 2025.2?", options: [ { text: "20 a 25 de agosto", correct: false }, { text: "01 a 05 de setembro", correct: false }, { text: "27 a 31 de agosto", correct: true }, { text: "11 a 16 de setembro", correct: false } ], feedback_correct: "Exato! A Matrícula WEB é o primeiro e mais importante passo.", feedback_incorrect: "Ops! A data correta é de 27 a 31 de agosto." },
+            { question: "Qual o período para solicitar o TRANCAMENTO de matrícula?", options: [ { text: "30/09 a 29/10", correct: true }, { text: "01 a 05 de setembro", correct: false }, { text: "25 a 29 de setembro", correct: false }, { text: "11 a 16 de setembro", correct: false } ], feedback_correct: "Correto! O prazo é longo, mas não deixe para a última hora.", feedback_incorrect: "Atenção! O período correto é de 30 de setembro a 29 de outubro." },
+            { question: "Qual o limite de carga horária na 2ª Etapa (Rematrícula)?", options: [ { text: "400 horas", correct: false }, { text: "450 horas", correct: false }, { text: "500 horas", correct: false }, { text: "540 horas", correct: true } ], feedback_correct: "Isso aí! Na rematrícula você pode se inscrever em até 540 horas.", feedback_incorrect: "Na verdade, na 2ª etapa o limite sobe para 540 horas." },
+            { question: "Como você deve acessar o SIGAA pela primeira vez?", options: [ { text: "Usando o número de matrícula como login", correct: false }, { text: "Com o CPF como login e a senha enviada por e-mail", correct: true }, { text: "Criando um novo cadastro no site", correct: false }, { text: "Solicitando ao colegiado", correct: false } ], feedback_correct: "Isso mesmo! O login é seu CPF e a senha inicial vai para o seu e-mail.", feedback_incorrect: "O primeiro acesso é com seu CPF e a senha que a UFBA envia para o seu e-mail." },
+            { question: "O que fazer se você não receber o e-mail com a senha do SIGAA?", options: [ { text: "Ir presencialmente na STI", correct: false }, { text: "Esperar uma semana", correct: false }, { text: "Ligar para o colegiado", correct: false }, { text: "Usar a opção 'Recuperar Senha' no próprio site do SIGAA", correct: true } ], feedback_correct: "Perfeito! A opção 'Recuperar Senha' é o caminho mais rápido.", feedback_incorrect: "O ideal é usar a opção 'Recuperar Senha' no próprio site do SIGAA." },
+            { question: "Qual é o primeiro critério na ordem de prioridade para conseguir vagas?", options: [ { text: "Formandos", correct: false }, { text: "Estudantes Regulares (Semestralizados)", correct: true }, { text: "Adiantamento de disciplinas", correct: false }, { text: "Recuperação (reprovados)", correct: false } ], feedback_correct: "Isso mesmo! Estudantes que seguem a grade têm prioridade.", feedback_incorrect: "Na verdade, os estudantes regulares (semestralizados) têm a maior prioridade." },
+            { question: "Qual benefício NÃO está listado como uma vantagem do SIGAA?", options: [ { text: "Diploma Digital", correct: false }, { text: "Histórico em Tempo Real", correct: false }, { text: "Solicitação de Atividades Complementares", correct: false }, { text: "Acesso gratuito a softwares", correct: true } ], feedback_correct: "Correto! Acesso a softwares não é um benefício direto listado.", feedback_incorrect: "Essa é uma vantagem listada. Acesso a softwares não é um benefício direto do SIGAA." },
+            { question: "No código de horários '6N12', o que o '6' significa?", options: [ { text: "Sexto semestre", correct: false }, { text: "Sexta-feira", correct: true }, { text: "6ª hora da noite", correct: false }, { text: "Sala 6", correct: false } ], feedback_correct: "Exatamente! No código do SIGAA, '6' representa a Sexta-feira.", feedback_incorrect: "Quase! No código de horários, o primeiro número é o dia da semana. '6' é Sexta-feira." },
+            { question: "A falta de lançamento de nota do semestre anterior pode te impedir de...", options: [ { text: "Trancar a matrícula", correct: false }, { text: "Acessar o SIGAA", correct: false }, { text: "Solicitar quebra de pré-requisito", correct: true }, { text: "Colar grau", correct: false } ], feedback_correct: "Isso mesmo! É importante ficar de olho nas suas notas para não ter problemas.", feedback_incorrect: "Cuidado! A falta de nota pode impedir a quebra de pré-requisito e a matrícula em disciplinas sequenciais." }
+        ];
+        
+        const optionStyles = [ { color: '#dc3545', symbol: '▲' }, { color: '#007bff', symbol: '♦' }, { color: '#ffc107', symbol: '●' }, { color: '#28a745', symbol: '■' } ];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timer;
+        let timeLeft = 30;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; }
+            return array;
+        }
+
+        function startQuiz() {
+            setupSounds();
+            Tone.start();
+            quizIntro.style.display = 'none';
+            resultsScreen.style.display = 'none';
+            quizContainer.style.display = 'block';
+            currentQuestionIndex = 0;
+            score = 0;
+            runningScoreEl.innerText = `Pontos: 0`;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            resetState();
+            const currentQuestion = quizData[currentQuestionIndex];
+            questionEl.innerText = currentQuestion.question;
+            questionCounterEl.innerText = `Pergunta ${currentQuestionIndex + 1} de ${quizData.length}`;
+            let shuffledOptions = shuffle([...currentQuestion.options]);
+            let shuffledStyles = shuffle([...optionStyles]);
+
+            optionsEl.forEach((optionEl, index) => {
+                const optionData = shuffledOptions[index];
+                const styleData = shuffledStyles[index];
+                optionEl.querySelector('span').innerText = optionData.text;
+                optionEl.style.backgroundColor = styleData.color;
+                optionEl.dataset.correct = optionData.correct;
+                let symbolEl = optionEl.querySelector('.symbol');
+                if (!symbolEl) {
+                    symbolEl = document.createElement('div');
+                    symbolEl.className = 'symbol text-2xl';
+                    optionEl.prepend(symbolEl);
+                }
+                symbolEl.innerText = styleData.symbol;
+            });
+            startTimer();
+        }
+
+        function startTimer() {
+            timeLeft = 30;
+            timerEl.innerText = timeLeft;
+            timer = setInterval(() => {
+                timeLeft--;
+                timerEl.innerText = timeLeft;
+                if (timeLeft <= 0) { clearInterval(timer); selectAnswer(null); }
+            }, 1000);
+        }
+
+        function resetState() {
+            clearInterval(timer);
+            optionsEl.forEach(option => { option.classList.remove('disabled'); option.dataset.correct = 'false'; });
+        }
+
+        function selectAnswer(selectedEl) {
+            clearInterval(timer);
+            const isTimeout = selectedEl === null;
+            const correct = !isTimeout && selectedEl.dataset.correct === 'true';
+            const currentQuestion = quizData[currentQuestionIndex];
+            optionsEl.forEach(option => option.classList.add('disabled'));
+            let points = 0;
+            if (correct) {
+                points = 500 + (timeLeft * 16.66);
+                score += Math.round(points);
+                runningScoreEl.innerText = `Pontos: ${score}`;
+                correctSound.triggerAttackRelease("C5", "8n");
+                showFeedback(true, currentQuestion.feedback_correct, Math.round(points));
+            } else {
+                incorrectSound.triggerAttackRelease("C3", "8n");
+                showFeedback(false, currentQuestion.feedback_incorrect, 0);
+            }
+        }
+
+        function showFeedback(isCorrect, feedbackMsg, points) {
+            feedbackTitle.innerText = isCorrect ? "BOA!" : "QUASE LÁ...";
+            feedbackText.innerText = feedbackMsg;
+            feedbackContent.className = isCorrect ? 'correct' : 'incorrect';
+            if(isCorrect) {
+                feedbackPoints.innerText = `+${points}`;
+            } else {
+                feedbackPoints.innerText = '';
+            }
+            feedbackModal.classList.add('show');
+            setTimeout(() => {
+                feedbackModal.classList.remove('show');
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.length) { showQuestion(); } else { showResults(); }
+            }, 5000); // Feedback shown for 5 seconds
+        }
+        
+        function showResults() {
+            quizContainer.style.display = 'none';
+            resultsScreen.style.display = 'block';
+            const maxScore = quizData.length * 1000;
+            finalScoreEl.innerText = `${score} de ${maxScore} Pontos`;
+
+            const percentage = (score / maxScore) * 100;
+            const resultsMessageEl = document.getElementById('results-message');
+            const resultsCardEl = document.getElementById('results-card');
+
+            resultsCardEl.classList.remove('bg-purple-800', 'bg-green-600', 'bg-red-600');
+
+            if (percentage >= 80) {
+                resultsMessageEl.innerText = "Parabéns, você está no caminho certo!";
+                resultsCardEl.classList.add('bg-green-600');
+            } else {
+                resultsMessageEl.innerText = "Tente mais uma vez e reforce seu conhecimento!";
+                resultsCardEl.classList.add('bg-red-600');
+            }
+        }
+
+        optionsEl.forEach(option => {
+            option.addEventListener('click', () => { if (!option.classList.contains('disabled')) { selectAnswer(option); } });
+        });
+
+        startQuizBtn.addEventListener('click', startQuiz);
+        restartQuizBtn.addEventListener('click', startQuiz);
+    });
+    </script>
 </body>
 </html>
